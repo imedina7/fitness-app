@@ -8,7 +8,7 @@ const AppHeader = () => {
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Fitness app</h1>
         <div>
-          <Button title="Join" type="default" url='#/join'/>
+          <Button title="Join" type="default" url='/join'/>
         </div>
       </header>
     )

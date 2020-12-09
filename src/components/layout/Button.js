@@ -1,12 +1,14 @@
+import { Link } from 'react-router-dom';
+
 const Button = (props) => {
   const {url, type, title} = props;
   const classes = (type !== undefined) ? `button ${type}` : 'button';
 
   return (
-    <a href={ url } class={ classes }
+    <Link to={ url } className={ classes }
     >
       { title }
-    </a>
+    </Link>
   )
 }
 

@@ -1,15 +1,19 @@
-import { Router } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import AppHeader from './layout/Header';
 import SignupPage from './SignupPage';
+import HomePage from './HomePage';
 
 function App() {
   return (
     <div className="App">
       <AppHeader />
-      <Router path="/join">
+      <Route exact path="/">
+        <HomePage />
+      </Route>
+      <Route path="/join">
         <SignupPage />
-      </Router>
+      </Route>
     </div>
   );
 }
