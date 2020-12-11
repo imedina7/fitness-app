@@ -20,7 +20,10 @@ const getSingleAffiliate = (req, res, next) => {
   }
   next()
 };
-
-const AffiliateApiHandlers = {getAffiliates, getSingleAffiliate};
+const putAffiliate = (req, res, next) => {
+  console.log(req.body);
+  res.sendStatus(200);
+};
+const AffiliateApiHandlers = {getAffiliates, getSingleAffiliate, putAffiliate};
 
 export default AffiliateApiHandlers;
