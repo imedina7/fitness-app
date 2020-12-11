@@ -1,0 +1,22 @@
+div.sidebar-container {
+    padding: 1em 0.5em;
+    font-weight: bold;
+    display: none;
+    background: rgba(16, 86, 104, 0.657);
+    position: fixed;
+    min-width: 200px;
+    top: 12.5vh;
+    bottom: 0;
+    right: 0;
+    backdrop-filter: blur(3px);
+}
+div.sidebar-container.open {
+    display: block;
+}
+div.sidebar-container ul li{
+    padding: 0.4em 0.3em; 
+}
+div.sidebar-container ul li a {
+    color: #FFFFFF;
+    text-shadow: 0 2px 2px #00000077;
+}

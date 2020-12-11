@@ -1,0 +1,26 @@
+div.sidebar-button {
+  width: 1.5em;
+  height: 1.5em;
+  cursor: pointer;
+  padding: 0.2em;
+  margin: 0 1em;
+}
+div.sidebar-button span.sbtn-bar{
+  display: block;
+  height: 0.4em;
+  border-bottom: 3px solid #FFFFFF;
+  width: 100%;
+  transform: translateY(-0.2em) rotate(0);
+  transition: 450ms all;
+  opacity: 1;
+}
+div.sidebar-button.open span.sbtn-bar.middle{
+  transform: translate(-0.35em, -0.2em) rotate(-45deg);
+}
+div.sidebar-button.open span.sbtn-bar.bottom{
+  transform: translateY( -0.75em) rotate(45deg);
+}
+div.sidebar-button.open span.sbtn-bar.top{
+  opacity: 0;
+  transform: translateY(1em);
+}

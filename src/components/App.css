@@ -26,3 +26,23 @@ section div.wrapper {
   width: 70%;
   margin: 20px auto;
 }
+form {
+  display: flex;
+  flex-direction: column;
+}
+form .formitem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+input[type=text], label, input[type=password] {
+  padding: 0.3em;
+  margin: 0.3em 0.4em;
+}
+
+input[type=text], input[type=password] {
+  background: linear-gradient(#FFFFFF, #F0F0F0);
+  border: 1px solid #6e8aad;
+  border-radius: 3px;
+  box-shadow: inset 0 2px 3px #00000033;
+}

@@ -22,7 +22,7 @@ export default function apiclient () {
     getLocationFromId: async (_id) => {
       const locationObjString = await axios.get(`/api/v1/location/${_id}`);
       const locationObj = JSON.parse(locationObjString);
-      
+
       return new Location(locationObj._id,
                           locationObj.city,
                           locationObj.country,
@@ -30,6 +30,9 @@ export default function apiclient () {
                           locationObj.geolocation,
                           locationObj.type,
                           locationObj.openhours);
+    },
+    newAffiliate: async (affiliate) => {
+      return await axios.put('/api/v1/affiliate', affiliate);
     }
   }
 }

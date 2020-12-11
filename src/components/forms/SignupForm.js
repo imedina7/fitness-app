@@ -40,6 +40,18 @@ export class SignupForm extends Component {
           <input id="address" name="address" type="text"></input>
         </div>
         <div className="formitem">
+          <label htmlFor="email">Email: </label>
+          <input id="email" name="email" type="text"></input>
+        </div>
+        <div className="formitem">
+          <label htmlFor="password">Password: </label>
+          <input id="password" name="password" type="password"></input>
+        </div>
+        <div className="formitem">
+          <label htmlFor="passwordConfirm">Confirm Password: </label>
+          <input id="passwordConfirm" name="passwordConfirm" type="password"></input>
+        </div>
+        <div className="formitem">
           <h3>Plan: </h3>
           <label htmlFor="basic-plan">Basic</label>
           <input name="plantype" id="basic-plan" type="radio" value="basic"></input>
