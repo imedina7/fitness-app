@@ -4,6 +4,7 @@ div.sidebar-button {
   cursor: pointer;
   padding: 0.2em;
   margin: 0 1em;
+  z-index: 1001;
 }
 div.sidebar-button span.sbtn-bar{
   display: block;

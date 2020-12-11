@@ -15,7 +15,7 @@ export default function SidebarButton(props) {
                 const newOpenState = !isOpen;
                 setIsOpen(newOpenState);
                 props.onToggleMenuState(e, newOpenState);
-            }, 500)
+            }, 200)
         } } className="sidebar-button">
             <span className="sbtn-bar top"></span>
             <span className="sbtn-bar middle"></span>
