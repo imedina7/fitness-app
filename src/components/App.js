@@ -12,7 +12,7 @@ function App() {
         <HomePage />
       </Route>
       <Route path="/join">
-        <SignupPage />
+        <SignupPage onSubmit={ }/>
       </Route>
     </div>
   );

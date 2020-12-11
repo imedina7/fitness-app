@@ -1,8 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,200;0,400;0,700;1,200&display=swap');
+
+body {
+  font-family: 'Fira Sans', 'Segoe UI', sans-serif;
+  font-size: 18px;
+}
 .App {
-  background-color: rgb(50, 60, 90);
+  background-color: #c7cedb;
   min-height: 100vh;
 }
+h2,h3 {
+  font-weight: bold;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  height: 87vh;
+  justify-content: center;
+}
+section h2 {
+  font-size: 1.4em;
+  margin-bottom: 1em;
+}
 
-.App-link {
-  color: #61dafb;
+section div.wrapper {
+  width: 70%;
+  margin: 20px auto;
 }
