@@ -2,8 +2,9 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import AppHeader from './layout/Header';
-import SignupPage from './SignupPage';
-import HomePage from './HomePage';
+import SignupPage from './pages/SignupPage';
+import HomePage from './pages/HomePage';
+import MapPage from './pages/MapPage';
 import Sidebar from './layout/Sidebar';
 
 const submitSignupForm = function (e) {
@@ -25,6 +26,9 @@ function App() {
       </Route>
       <Route path="/join">
         <SignupPage onSubmit={ submitSignupForm }/>
+      </Route>
+      <Route path="/map">
+        <MapPage />
       </Route>
     <Sidebar isOpen={ sidebarOpenState }/>
     </div>
