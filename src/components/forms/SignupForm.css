@@ -1,0 +1,36 @@
+form.signup-form .plan-selector input[type="radio"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+form.signup-form .plan-selector {
+    justify-content: space-around;
+}
+form.signup-form .plan-selector label{
+    min-height: 4em;
+    width: 6em;
+    justify-self: center;
+}
+
+form.signup-form .plan-selector label div {
+    text-align: center;
+    padding: 0.5em;
+    position: relative;
+    height: 4em;
+    border: 3pt solid #adadad;
+    border-radius: 3pt;
+    opacity: 0.6;
+    transition: 400ms all;
+}
+
+form.signup-form .plan-selector input[type=radio]:checked ~ div {
+    border-color: #298ab1;
+    font-weight: bold;
+    opacity: 1;
+}
+form.signup-form .plan-selector label div span{ 
+    position: absolute;
+    bottom: 0.5em;
+    transform: translateX(-50%);
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "./SignupForm.css";
 
 export class SignupForm extends Component {
   constructor (props){
@@ -20,13 +21,55 @@ export class SignupForm extends Component {
         [name]: value 
     });
   }
-  
-  getPlanInfo = () => {
-    return (this.state.plantype !== undefined) ? this.plans[this.state.plantype] : '';
+  validateAndSubmit = (e) => {
+    e.preventDefault();
+
+    const { firstname, 
+            lastname, 
+            address, 
+            email, 
+            password, 
+            passwordConfirm,
+            plantype } = this.state;
+
+    if (!(firstname &&
+          lastname &&
+          address &&
+          email &&
+          password &&
+          passwordConfirm &&
+          plantype)){
+      return this.setErrMsg('All fields are required.');
+    }
+    if (password !== passwordConfirm) {
+      return this.setErrMsg('Passwords don\'t match');
+    }
+    if (!email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+      return this.setErrMsg('Invalid email')
+    }
+    const parentEventHandler = this.props.onSubmit.bind(this);
+    parentEventHandler(e);
   }
+  getPlanInfo = () => {
+    return (this.state.plantype !== undefined) ? this.plans[this.state.plantype] : 'Please select a plan';
+  }
+
+  setErrMsg (msg) {
+    return this.setState(() => {
+      return {
+        errorMsg: msg
+      };
+    });
+  }
+
   render() {
     return (
-      <form onSubmit={ this.props.onSubmit.bind(this) } onChange={ this.updateForm }>
+      <form onSubmit={ this.validateAndSubmit } className="signup-form" onChange={ this.updateForm }>
+        <div className="formitem">
+          <p className="error-msg">
+            { this.state.errorMsg }
+          </p>
+        </div>
         <div className="formitem">
           <label htmlFor="firstname">First Name: </label>
           <input id="firstname" name="firstname" type="text"></input>
@@ -51,12 +94,16 @@ export class SignupForm extends Component {
           <label htmlFor="passwordConfirm">Confirm Password: </label>
           <input id="passwordConfirm" name="passwordConfirm" type="password"></input>
         </div>
-        <div className="formitem">
-          <h3>Plan: </h3>
-          <label htmlFor="basic-plan">Basic</label>
-          <input name="plantype" id="basic-plan" type="radio" value="basic"></input>
-          <label htmlFor="premium-plan">Premium</label>
-          <input name="plantype" id="premium-plan" type="radio" value="premium"></input>
+        <h3>Plan: </h3>
+        <div className="formitem plan-selector">
+          <label className="basic-plan">
+            <input name="plantype" id="basic-plan" type="radio" value="basic"></input>
+            <div><span>Basic</span></div>
+          </label>
+          <label className="premium-plan">
+            <input name="plantype" id="premium-plan" type="radio" value="premium"></input>
+            <div><span>Premium</span></div>
+          </label>
         </div>
         <div className="formitem">
           <p>{ this.getPlanInfo() }</p>
