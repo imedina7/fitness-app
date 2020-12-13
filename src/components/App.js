@@ -6,10 +6,16 @@ import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
 import MapPage from './pages/MapPage';
 import Sidebar from './layout/Sidebar';
+import apiclient from '../lib/apiclient';
 
 const submitSignupForm = function (e) {
   e.preventDefault();
-  console.log(this.state);
+  const client = apiclient();
+  client.newAffiliate(this.state).then(()=>{
+    console.log('New affiliate request sent');
+  }).catch( err => {
+    console.error(err);
+   });
 }
 
 const { useState } = React;
