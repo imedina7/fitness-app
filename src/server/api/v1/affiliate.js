@@ -1,8 +1,8 @@
-const getAffiliates = (req, res, next) => {
+const getAffiliates = (db,req, res, next) => {
   res.send('Affiliates');
   next();
 }
-const getSingleAffiliate = (req, res, next) => {
+const getSingleAffiliate = (db,req, res, next) => {
   const affiliateObject = { _id: 1, 
     city: 'Montevideo',
     country: 'Uruguay',
@@ -11,7 +11,7 @@ const getSingleAffiliate = (req, res, next) => {
     type: 'indoors',
     openhours: 'Mon. - Sat., 9:00AM - 10PM'
    };
-  const reqLocId = parseInt(req.params.id, 10);
+  const reqLocId = parseInt(db,req.params.id, 10);
 
   if (reqLocId === 1) {
     res.json(affiliateObject);
@@ -20,7 +20,7 @@ const getSingleAffiliate = (req, res, next) => {
   }
   next()
 };
-const putAffiliate = (req, res, next) => {
+const putAffiliate = (db,req, res, next) => {
   console.log(req.body);
   res.sendStatus(200);
 };

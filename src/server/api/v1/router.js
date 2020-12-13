@@ -2,12 +2,12 @@ import ExpressRouter from 'express';
 import LocationApiHandlers from './location.js';
 import AffiliateApiHandlers from './affiliate.js';
 
-const ApiRouterV1 = () => {
+const ApiRouterV1 = (db) => {
     const router = new ExpressRouter();
 
-    router.get('/locations', LocationApiHandlers.getLocations);
-    router.get('/location/:id', LocationApiHandlers.getSingleLocation);
-    router.put('/affiliate', AffiliateApiHandlers.putAffiliate);
+    router.get('/locations', LocationApiHandlers.getLocations.bind(this, db));
+    router.get('/location/:id', LocationApiHandlers.getSingleLocation.bind(this, db));
+    router.put('/affiliate', AffiliateApiHandlers.putAffiliate.bind(this, db));
 
     return router;
 }
