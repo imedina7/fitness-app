@@ -35,11 +35,22 @@ form .formitem {
   flex-direction: row;
   justify-content: space-between;
 }
+form .formitem .error-msg {
+  color: #FF0000;
+  font-size: .7em;
+}
 input[type=text], label, input[type=password] {
   padding: 0.3em;
   margin: 0.3em 0.4em;
 }
-
+input[type=submit] {
+  font-size: 0.9em;
+  padding: 0.3em 0.5em;
+  background-color: rgb(92, 209, 255);
+  border: 0px;
+  border-radius: 0.3em;
+  margin: 1em 0;
+}
 input[type=text], input[type=password] {
   background: linear-gradient(#FFFFFF, #F0F0F0);
   border: 1px solid #6e8aad;
