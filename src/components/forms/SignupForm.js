@@ -41,9 +41,6 @@ export class SignupForm extends Component {
           plantype)){
       return this.setErrMsg('All fields are required.');
     }
-    if (password !== passwordConfirm) {
-      return this.setErrMsg('Passwords don\'t match');
-    }
     if (!email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
       return this.setErrMsg('Invalid email')
     }
@@ -85,14 +82,6 @@ export class SignupForm extends Component {
         <div className="formitem">
           <label htmlFor="email">Email: </label>
           <input id="email" name="email" type="text"></input>
-        </div>
-        <div className="formitem">
-          <label htmlFor="password">Password: </label>
-          <input id="password" name="password" type="password"></input>
-        </div>
-        <div className="formitem">
-          <label htmlFor="passwordConfirm">Confirm Password: </label>
-          <input id="passwordConfirm" name="passwordConfirm" type="password"></input>
         </div>
         <h3>Plan: </h3>
         <div className="formitem plan-selector">
