@@ -6,22 +6,14 @@ import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
 import MapPage from './pages/MapPage';
 import Sidebar from './layout/Sidebar';
-import apiclient from '../lib/apiclient';
-
-const submitSignupForm = function (e) {
-  e.preventDefault();
-  const client = apiclient();
-  client.newAffiliate(this.state).then(()=>{
-    console.log('New affiliate request sent');
-  }).catch( err => {
-    console.error(err);
-   });
-}
+import { formEvents } from '../lib/eventHandlers';
 
 const { useState } = React;
 
 function App() {
+  
   const [ sidebarOpenState, setSidebarOpenState ] = useState(false);
+
   return (
     <div className="App">
       <AppHeader onToggleMenuState={ (e, isMenuOpen) => {
@@ -31,12 +23,12 @@ function App() {
         <HomePage />
       </Route>
       <Route path="/join">
-        <SignupPage onSubmit={ submitSignupForm }/>
+        <SignupPage onSubmit={ formEvents.submitSignupForm }/>
       </Route>
       <Route path="/map">
         <MapPage />
       </Route>
-    <Sidebar isOpen={ sidebarOpenState }/>
+      <Sidebar isOpen={ sidebarOpenState } />
     </div>
   );
 }
