@@ -27,17 +27,13 @@ export class SignupForm extends Component {
     const { firstname, 
             lastname, 
             address, 
-            email, 
-            password, 
-            passwordConfirm,
+            email,
             plantype } = this.state;
 
     if (!(firstname &&
           lastname &&
           address &&
           email &&
-          password &&
-          passwordConfirm &&
           plantype)){
       return this.setErrMsg('All fields are required.');
     }
