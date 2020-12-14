@@ -2,8 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 
-export default function Sidebar(props) {
-    const { isOpen } = props;
+export default function Sidebar({ isOpen }) {
     
     const sidebarClasses = useRef('sidebar-container');
 
