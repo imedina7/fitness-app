@@ -44,5 +44,8 @@
       "last 1 safari version"
     ]
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "react-test-render": "^1.1.2"
+  }
 }

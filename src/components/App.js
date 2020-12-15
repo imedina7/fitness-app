@@ -1,11 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
+
+// Layout components
 import AppHeader from './layout/Header';
+import Sidebar from './layout/Sidebar';
+
+// Page components
 import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
 import MapPage from './pages/MapPage';
-import Sidebar from './layout/Sidebar';
+import AdminPage from './pages/admin/AdminPage';
+
 import { formEvents } from '../lib/eventHandlers';
 
 const { useState } = React;
@@ -27,6 +33,9 @@ function App() {
       </Route>
       <Route path="/map">
         <MapPage />
+      </Route>
+      <Route path="/admin">
+        <AdminPage />
       </Route>
       <Sidebar isOpen={ sidebarOpenState } />
     </div>
