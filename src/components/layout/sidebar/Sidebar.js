@@ -11,7 +11,7 @@ export default function Sidebar({ isOpen }) {
     }, [isOpen])
 
     return (
-        <div className={ sidebarClasses.current }>
+        <div className={ sidebarClasses.current } data-testid='sidebar-menu'>
             <ul className="sidebar-menu">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/map">See locations</Link></li>

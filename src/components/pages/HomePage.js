@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
-    <section>
+    <section data-testid='home-page'>
       <div className="wrapper">
         <h2>Welcome to the Fitness app!</h2>
         <p>Here you will be able to:</p>

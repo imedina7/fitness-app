@@ -6,7 +6,7 @@ const ButtonLink = (props) => {
   const buttonClass = (type !== undefined) ? `${type}-btn` : 'primary-btn';
 
   return (
-    <Link to={ url }>
+    <Link to={ url } data-testid='link-btn'>
       <button className={ buttonClass }>
         { title }
       </button>
