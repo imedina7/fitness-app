@@ -33,7 +33,7 @@ class Tabs extends Component {
       <div className="tabs">
         <ol className="tab-list">
           {children.map((child) => {
-            const { label, closeable } = child.props;
+            const { label, closeable, onClose } = child.props;
 
             return (
               <Tab
@@ -42,6 +42,7 @@ class Tabs extends Component {
                 label={label}
                 closeable={closeable}
                 onClick={onClickTabItem}
+                onClose={onClose}
               />
             );
           })}

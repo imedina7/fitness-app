@@ -5,22 +5,20 @@ class Tab extends Component {
   static propTypes = {
     activeTab: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
   };
 
   onClick = () => {
     const { label, onClick } = this.props;
     onClick(label);
   }
-
   render() {
     const {
       onClick,
       props: {
         activeTab,
         label,
-        closeable,
-        onClose
+        closeable
       },
     } = this;
 
@@ -36,7 +34,7 @@ class Tab extends Component {
         onClick={onClick}
       >
         {label}
-        {( closeable ) ? (<span onClick={ onClose.bind(this) } className="tab-close-btn">x</span>) : ''}
+        {( closeable ) ? (<span className="tab-close-btn">x</span>) : ''}
       </li>
     );
   }

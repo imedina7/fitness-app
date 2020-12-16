@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function LocationsTab({label}) {
+export default function LocationsTab() {
   return (
     <div>
-      <h1>{label}:</h1>
+      <h2>Manage Locations:</h2>
     </div>
   )
 }

@@ -2,27 +2,51 @@ import React from 'react'
 import Tabs from '../../layout/Tabs';
 import LocationsTab from './LocationsTab';
 import AffiliatesTab from './AffiliatesTab';
+import apiclient from '../../../lib/apiclient';
+import { AdminContext } from './admin-context';
 
 export default class AdminPage extends React.Component {
   constructor (props){
     super(props)
-    const opentabs = new Set();
+    const tabset = new Set();
 
-    opentabs.add({ 
+    tabset.add({ 
       label: "Locations",
       closeable: false,
-      element: <LocationsTab label={this.label} closeable={ this.closeable } />
+      element: LocationsTab
     });
-    opentabs.add({ 
+    tabset.add({ 
       label: "Affiliates",
       closeable: false,
-      element: <AffiliatesTab label={this.label} closeable={ this.closeable } />
+      element: AffiliatesTab
     });
-
-    this.state = { opentabs };
+    this.state = { tabset,
+      data: {
+        locations: [{ _id: 1, 
+          city: 'Montevideo',
+          country: 'Uruguay',
+          address: 'Av. Dr. Luis Alberto de Herrera 1847',
+          geolocation: {type: 'Point', coordinates: [ -34.893504, -56.144343 ] },
+          type: 'indoors',
+          openhours: 'Mon. - Sat., 9:00AM - 10PM'
+         },{ _id: 2, 
+          city: 'Montevideo',
+          country: 'Uruguay',
+          address: 'Av. Dr. Luis Alberto de Herrera 1847',
+          geolocation: {type: 'Point', coordinates: [ -34.893504, -56.144343 ] },
+          type: 'indoors',
+          openhours: 'Mon. - Sat., 9:00AM - 10PM'
+         }],
+        affiliates: []
+      }
+    }
+    this.apiclient = apiclient();
   }
-  openNewAffiliateTab = (tab) => {
+  openNewAffiliateTab = () => {
     const tabset = this.state.tabset;
+    const tab = {
+      label: 'New Affiliate'
+    }
     tabset.add(tab);
     this.setState({tabset});
   }
@@ -34,13 +58,34 @@ export default class AdminPage extends React.Component {
     tabset.delete(tab);
     this.setState({tabset});
   }
+  componentDidMount () {
+    
+    const { apiclient } = this;
 
+    apiclient.getLocations().then((locations) => this.setState({data: { locations }}) )
+    .catch(err => console.error(err) );
+
+    apiclient.getAffiliates().then((affiliates) => this.setState({data: { affiliates }}) )
+    .catch(err => console.error(err) );
+  }
   render() {
+    const { closeTab, state: {data} } = this;
     return (
       <div>
         <h2>Admin page</h2>
-        <Tabs>
-        </Tabs>
+        <AdminContext.Provider value={ data }>
+
+          <Tabs>
+            {Array.from(this.state.tabset).map((tab) => { 
+              const TabElement = tab.element;
+              return (
+                <div label={tab.label} closeable={tab.closeable} onClose={ closeTab(tab) }>
+                  <TabElement />
+                </div>
+              )
+            })}
+          </Tabs>
+        </AdminContext.Provider>
       </div>
     )
   } 
