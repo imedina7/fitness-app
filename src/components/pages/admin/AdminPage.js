@@ -1,5 +1,5 @@
 import React from 'react'
-import Tabs from '../../layout/Tabs';
+import Tabs from '../../layout/tabs/Tabs';
 import LocationsTab from './LocationsTab';
 import AffiliatesTab from './AffiliatesTab';
 import apiclient from '../../../lib/apiclient';
@@ -22,21 +22,7 @@ export default class AdminPage extends React.Component {
     });
     this.state = { tabset,
       data: {
-        locations: [{ _id: 1, 
-          city: 'Montevideo',
-          country: 'Uruguay',
-          address: 'Av. Dr. Luis Alberto de Herrera 1847',
-          geolocation: {type: 'Point', coordinates: [ -34.893504, -56.144343 ] },
-          type: 'indoors',
-          openhours: 'Mon. - Sat., 9:00AM - 10PM'
-         },{ _id: 2, 
-          city: 'Montevideo',
-          country: 'Uruguay',
-          address: 'Av. Dr. Luis Alberto de Herrera 1847',
-          geolocation: {type: 'Point', coordinates: [ -34.893504, -56.144343 ] },
-          type: 'indoors',
-          openhours: 'Mon. - Sat., 9:00AM - 10PM'
-         }],
+        locations: [],
         affiliates: []
       }
     }
