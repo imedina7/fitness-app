@@ -65,36 +65,36 @@ export class SignupForm extends Component {
         </div>
         <div className="formitem">
           <label htmlFor="firstname">First Name: </label>
-          <input id="firstname" name="firstname" type="text"></input>
+          <input id="firstname" name="firstname" type="text" data-testid="firstname-field"></input>
         </div>
         <div className="formitem">
           <label htmlFor="lastname">Last Name: </label>
-          <input id="lastname" name="lastname" type="text"></input>
+          <input id="lastname" name="lastname" type="text" data-testid="lastname-field"></input>
         </div>
         <div className="formitem">
           <label htmlFor="address">Address: </label>
-          <input id="address" name="address" type="text"></input>
+          <input id="address" name="address" type="text" data-testid="address-field"></input>
         </div>
         <div className="formitem">
           <label htmlFor="email">Email: </label>
-          <input id="email" name="email" type="text"></input>
+          <input id="email" name="email" type="text" data-testid="email-field"></input>
         </div>
         <h3>Plan: </h3>
         <div className="formitem plan-selector">
           <label className="basic-plan">
-            <input name="plantype" id="basic-plan" type="radio" value="basic"></input>
+            <input name="plantype" id="basic-plan" type="radio" value="basic" data-testid="basicplan-option"></input>
             <div><span>Basic</span></div>
           </label>
           <label className="premium-plan">
-            <input name="plantype" id="premium-plan" type="radio" value="premium"></input>
+            <input name="plantype" id="premium-plan" type="radio" value="premium" data-testid="premiumplan-option"></input>
             <div><span>Premium</span></div>
           </label>
         </div>
         <div className="formitem">
-          <p>{ this.getPlanInfo() }</p>
+          <p data-testid="plan-info-paragraph">{ this.getPlanInfo() }</p>
         </div>
         <div className="formitem">
-          <input type="submit" value="Sign up"/>
+          <input type="submit" value="Sign up" data-testid="submit-btn"/>
         </div>
       </form>
     )
