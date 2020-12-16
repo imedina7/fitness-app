@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Sidebar from '../Sidebar';
+import SignupPage from '../SignupPage';
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -11,5 +11,5 @@ afterEach(cleanup);
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<BrowserRouter><Sidebar /></BrowserRouter>, div);
+    ReactDOM.render(<SignupPage />, div);
 })
