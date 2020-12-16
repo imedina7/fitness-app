@@ -1,8 +1,8 @@
-import logo from '../../assets/fitness-app-logo.svg';
+import logo from '../../../assets/fitness-app-logo.svg';
 import './Header.css';
-import ButtonLink from './ButtonLink'
+import ButtonLink from '../button-link/ButtonLink'
 import { Link } from 'react-router-dom';
-import SidebarButton from './SidebarButton';
+import SidebarButton from '../sidebar-button/SidebarButton';
 
 const AppHeader = (props) => {
     return (

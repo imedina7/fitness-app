@@ -3,8 +3,8 @@ import { Route } from 'react-router-dom';
 import './App.css';
 
 // Layout components
-import AppHeader from './layout/Header';
-import Sidebar from './layout/Sidebar';
+import AppHeader from './layout/header/Header';
+import Sidebar from './layout/sidebar/Sidebar';
 
 // Page components
 import SignupPage from './pages/SignupPage';

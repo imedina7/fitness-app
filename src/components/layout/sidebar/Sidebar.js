@@ -14,7 +14,7 @@ export default function Sidebar({ isOpen }) {
         <div className={ sidebarClasses.current }>
             <ul className="sidebar-menu">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/locations">See locations</Link></li>
+                <li><Link to="/map">See locations</Link></li>
                 <li><Link to="/admin">Admin panel</Link></li>
             </ul>
         </div>
