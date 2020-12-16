@@ -13,3 +13,18 @@ it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<SignupPage />, div);
 })
+
+it('renders form', () => {
+    const { getByTestId } = render(<SignupPage />);
+    expect(getByTestId('signup-form')).toBeInTheDocument();
+})
+
+it('has title', () => {
+    const { getByTestId } = render(<SignupPage />);
+    expect(getByTestId('signup-page-title')).toBeInTheDocument();
+})
+
+it('renders title properly', () => {
+    const { getByTestId } = render(<SignupPage />);
+    expect(getByTestId('signup-page-title')).toHaveTextContent('Sign up:');
+})

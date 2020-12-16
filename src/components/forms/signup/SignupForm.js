@@ -57,7 +57,7 @@ export class SignupForm extends Component {
 
   render() {
     return (
-      <form onSubmit={ this.validateAndSubmit } className="signup-form" onChange={ this.updateForm }>
+      <form onSubmit={ this.validateAndSubmit } className="signup-form" onChange={ this.updateForm } data-testid="signup-form">
         <div className="formitem">
           <p className="error-msg">
             { this.state.errorMsg }
