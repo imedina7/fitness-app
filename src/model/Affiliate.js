@@ -1,8 +1,9 @@
 export default class Affiliate {
-    constructor(firstname, lastname, address, plan){
+    constructor(firstname, lastname, address, email, plan){
         this.firstName = firstname;
         this.lastName = lastname;
         this.address = address;
+        this.email = email;
         this.plan = plan;
     }
     get getFirstName () {

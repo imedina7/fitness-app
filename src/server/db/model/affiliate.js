@@ -1,11 +1,11 @@
-import {model, Schema} from 'mongoose';
-import Affiliate from '../../../model/Affiliate';
+import mongoose from 'mongoose';
+import Affiliate from '../../../model/Affiliate.js';
 
 export default class AffiliateDocument extends Affiliate {
 
-  get getModel() {
+  static getModel() {
     if (this.model === undefined) {
-      const schema = new Schema({
+      const schema = new mongoose.Schema({
         firstName: {
           type: String,
           required: true 
@@ -20,12 +20,7 @@ export default class AffiliateDocument extends Affiliate {
         },
         email: {
           type: String,
-          required: true,
-          validate: {
-            validator: () => { 
-              return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email) 
-            }
-          }
+          required: true
         },
         plan: {
           type: String,
@@ -33,8 +28,21 @@ export default class AffiliateDocument extends Affiliate {
           required: true
         }
       });
-      this.model = model(schema);
+      schema.path('email').validate((value) => { 
+        return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+      })
+      this.model = mongoose.model('Affiliate', schema, 'affiliates');
     }
     return this.model;
+  }
+  async save() {
+    const AffiliateModel = AffiliateDocument.getModel();
+    const newAffiliate = new AffiliateModel({ 
+      firstName: this.firstName,
+      lastName: this.lastName,
+      address: this.address,
+      email: this.email,
+      plan: this.plan});
+    return await newAffiliate.save();
   }
 }

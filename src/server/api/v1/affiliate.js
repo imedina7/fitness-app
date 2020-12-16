@@ -1,8 +1,17 @@
-const getAffiliates = (db,req, res, next) => {
-  res.send('Affiliates');
-  next();
+import AffiliateDocument from '../../db/model/affiliate.js';
+
+const getAffiliates = (db,req, res) => {
+  const AffiliateModel = AffiliateDocument.getModel()
+  AffiliateModel.find().then(affiliateList => {
+    console.log('Listing affiliates from database...');
+    console.log(affiliateList);
+    res.json(affiliateList);
+  }).catch(err => {
+    console.error(err);
+    res.sendStatus(500);
+  })
 }
-const getSingleAffiliate = (db,req, res, next) => {
+const getSingleAffiliate = (db,req, res) => {
   const affiliateObject = { _id: 1, 
     city: 'Montevideo',
     country: 'Uruguay',
@@ -18,11 +27,21 @@ const getSingleAffiliate = (db,req, res, next) => {
   } else {
     res.sendStatus(404);
   }
-  next()
 };
 const putAffiliate = (db,req, res, next) => {
-  console.log(req.body);
-  res.sendStatus(200);
+  const affiliate = req.body;
+  const affiliateDoc = new AffiliateDocument(affiliate.firstname, 
+                                             affiliate.lastname, 
+                                             affiliate.address, 
+                                             affiliate.email, 
+                                             affiliate.plantype);
+  affiliateDoc.save().then(response => {
+    console.log('Added affiliate');
+    res.sendStatus(200);
+  }).catch( err => {
+    console.error(err);
+    res.sendStatus(500);
+  })
 };
 const AffiliateApiHandlers = {getAffiliates, getSingleAffiliate, putAffiliate};
 

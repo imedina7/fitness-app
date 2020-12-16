@@ -4,10 +4,9 @@ import Location from '../model/Location';
 export default function apiclient () {
   return {
     getLocations: async () => {
-      const locationListString = await axios.get('/api/v1/locations');
-      const locationList = JSON.parse(locationListString);
+      const locationList = await axios.get('/api/v1/locations');
 
-      const locationObjectArray = locationList.map((locationItem) => {
+      const locationObjectArray = locationList.data.map((locationItem) => {
         return new Location(locationItem._id,
                             locationItem.city, 
                             locationItem.country, 
@@ -32,7 +31,12 @@ export default function apiclient () {
                           locationObj.openhours);
     },
     newAffiliate: async (affiliate) => {
-      return await axios.put('/api/v1/affiliate', affiliate);
+      const response = await axios.put('/api/v1/affiliate', affiliate);
+      return response.data;
+    },
+    getAffiliates: async () => {
+      const response = await axios.get('/api/v1/affiliates');
+      return response.data;
     }
   }
 }

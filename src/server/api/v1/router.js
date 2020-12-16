@@ -7,6 +7,7 @@ const ApiRouterV1 = (db) => {
 
     router.get('/locations', LocationApiHandlers.getLocations.bind(this, db));
     router.get('/location/:id', LocationApiHandlers.getSingleLocation.bind(this, db));
+    router.get('/affiliates', AffiliateApiHandlers.getAffiliates.bind(this, db));
     router.put('/affiliate', AffiliateApiHandlers.putAffiliate.bind(this, db));
 
     return router;
