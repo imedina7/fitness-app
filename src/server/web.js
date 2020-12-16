@@ -16,9 +16,9 @@ app.use(express.json());
 
 app.use('/', express.static( join(__dirname, '/../../build')));
 
-const db = DatabaseConnection.getInstance();
+DatabaseConnection.getInstance();
 
-app.use('/api/v1', ApiRouterV1(db));
+app.use('/api/v1', ApiRouterV1());
 
 app.listen(config.PORT, () => {
     console.log(`App started on port: ${config.PORT}`);
