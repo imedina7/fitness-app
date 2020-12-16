@@ -1,6 +1,7 @@
 const config = {
   PORT: process.env.PORT || 8080,
-  MONGODB_URI: process.env.MONGODB_URI || 'mongodb+srv://localhost/fitness'
+  MONGODB_URI: process.env.MONGODB_URI || 'mongodb+srv://localhost/fitness',
+  G_APIKEY: process.env.G_APIKEY || null
 }
 
 export default config;

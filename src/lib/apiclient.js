@@ -37,6 +37,10 @@ export default function apiclient () {
     getAffiliates: async () => {
       const response = await axios.get('/api/v1/affiliates');
       return response.data;
+    },
+    getGoogleApiKey: async () => {
+      const response = await axios.get('/api/v1/auth?type=google');
+      return response.data;
     }
   }
 }
