@@ -2,9 +2,10 @@ import axios from 'axios';
 import Location from '../model/Location';
 
 export default function apiclient () {
+  const BASE_URL = 'https://abm-fitness-master-g6qyyj6318x.herokuapp.com'
   return {
     getLocations: async () => {
-      const locationList = await axios.get(`/api/v1/locations`);
+      const locationList = await axios.get(`${BASE_URL}/api/v1/locations`);
 
       const locationObjectArray = locationList.data.map((locationItem) => {
         return new Location(locationItem._id,
@@ -19,7 +20,7 @@ export default function apiclient () {
       return locationObjectArray;
     },
     getLocationFromId: async (_id) => {
-      const locationObjString = await axios.get(`/api/v1/location/${_id}`);
+      const locationObjString = await axios.get(`${BASE_URL}/api/v1/location/${_id}`);
       const locationObj = JSON.parse(locationObjString);
 
       return new Location(locationObj._id,
@@ -31,19 +32,19 @@ export default function apiclient () {
                           locationObj.openhours);
     },
     newLocation: async (location) => {
-      const response = await axios.put('/api/v1/location', location);
+      const response = await axios.put(`${BASE_URL}/api/v1/location`, location);
       return response.data;
     },
     newAffiliate: async (affiliate) => {
-      const response = await axios.put('/api/v1/affiliate', affiliate);
+      const response = await axios.put(`${BASE_URL}/api/v1/affiliate`, affiliate);
       return response.data;
     },
     getAffiliates: async () => {
-      const response = await axios.get('/api/v1/affiliates');
+      const response = await axios.get(`${BASE_URL}/api/v1/affiliates`);
       return response.data;
     },
     getGoogleApiKey: async () => {
-      const response = await axios.get('/api/v1/auth?type=google');
+      const response = await axios.get(`${BASE_URL}/api/v1/auth?type=google`);
       return response.data;
     }
   }

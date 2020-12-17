@@ -14,7 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 
-let whitelist = ['http://localhost:5000', `https://${config.HEROKU_APP_NAME}.herokuapp.com`];
+let whitelist = ['http://localhost:5000', 'http://localhost:3000' , `https://${config.HEROKU_APP_NAME}.herokuapp.com`];
 
 app.use(cors({
   origin: function(origin, callback){
