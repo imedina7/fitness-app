@@ -4,7 +4,7 @@ const getApiKey = (req, res) => {
   const responseObject = {
     apikey: ''
   }
-  switch (req.params.type){
+  switch (req.query.type){
     case 'google':
     default:
         responseObject.apikey = config.G_APIKEY;
