@@ -2,20 +2,12 @@ import axios from 'axios';
 import Location from '../model/Location';
 
 export default function apiclient () {
-  const BASE_URL = 'https://abm-fitness-master-g6qyyj6318x.herokuapp.com'
+  const BASE_URL = ''
   return {
     getLocations: async () => {
       const locationList = await axios.get(`${BASE_URL}/api/v1/locations`);
 
-      const locationObjectArray = locationList.data.map((locationItem) => {
-        return new Location(locationItem._id,
-                            locationItem.city, 
-                            locationItem.country, 
-                            locationItem.address, 
-                            locationItem.geolocation, 
-                            locationItem.type, 
-                            locationItem.openhours)
-      });
+      const locationObjectArray = locationList.data;
 
       return locationObjectArray;
     },

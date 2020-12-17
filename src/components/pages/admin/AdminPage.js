@@ -21,12 +21,9 @@ export default class AdminPage extends React.Component {
       element: AffiliatesTab
     });
     this.state = { tabset,
-      data: {
         locations: [],
         affiliates: []
-      }
     }
-    this.apiclient = apiclient();
   }
   deleteItem = (item, type) => {
     console.log(item, type);
@@ -52,21 +49,19 @@ export default class AdminPage extends React.Component {
   }
   componentDidMount () {
     
-    const { apiclient } = this;
-
-    apiclient.getLocations().then(
-      (locations) => this.setState({data: { locations }}) 
+    apiclient().getLocations().then(
+      (locations) => this.setState({ locations }) 
     ).catch(err => console.error(err) );
 
-    apiclient.getAffiliates().then((affiliates) => this.setState({data: { affiliates }}) 
+    apiclient().getAffiliates().then((affiliates) => this.setState({ affiliates }) 
     ).catch(err => console.error(err) );
   }
   render() {
-    const { closeTab, state: {data} } = this;
+    const { closeTab, state: {locations, affiliates} } = this;
     return (
       <div>
         <h2>Admin page</h2>
-        <AdminContext.Provider value={ data }>
+        <AdminContext.Provider value={ {locations, affiliates} }>
 
           <Tabs>
             {Array.from(this.state.tabset).map((tab) => { 

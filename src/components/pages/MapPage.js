@@ -9,15 +9,15 @@ export default class MapPage extends React.Component {
       locations: [],
       gApiKey: ''
     }
-    this.apiclient = apiclient();
-  }
-  componentDidMount () {
-    const { apiclient, setState } = this;
-    apiclient.getGoogleApiKey().then( responseData => {
+}
+componentDidMount () {
+
+    const { setState } = this;
+    apiclient().getGoogleApiKey().then( responseData => {
       setState({ gApiKey: responseData.apikey });
     }).catch(err => console.error('Failed to get google api key from api: ', err));
 
-    apiclient.getLocations().then(responseData => {
+    apiclient().getLocations().then(responseData => {
       setState({ locations: responseData });
     }).catch(err => console.error('Failed to get locations from api: ', err));
 
