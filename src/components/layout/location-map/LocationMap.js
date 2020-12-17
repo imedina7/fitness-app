@@ -1,12 +1,15 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react';
 import LocationTooltip from '../location-tooltip/LocationTooltip';
+import { MapContext } from '../../pages/map-context';
 
 export default class LocationMap extends React.Component {
   constructor (props) {
     super(props);
+    const { locations } = this.props;
     this.state = {
-      markers: null
+      markers: null,
+      locations
     }
   }
   static defaultProps = {
@@ -16,25 +19,31 @@ export default class LocationMap extends React.Component {
     },
     zoom: 11
   };
+  getMarkers = (locations) => {
+    return locations.map( location => (
+      <div lat={location.geolocation.coordinates[0]} key={location._id} lng={location.geolocation.coordinates[1]}><LocationTooltip location={location}></LocationTooltip></div>
+      ));
+  } 
   componentDidMount () {
-    const markers = this.props.locations.map( location => (
-    <div lng={location.geolocation.coordinates[0]} key={location._id} lat={location.geolocation.coordinates[1]}>{location.title}</div>
-    ));
-    this.setState({ markers });
   }
   render () {
-    const { locations, apikey, center, zoom } = this.props;
-    const { markers } = this.state;
+    const { apikey, center, zoom } = this.props;
+    const { locations } = this.state;
     console.log(locations);
     return (
-      <div style={{ height: '80vh', width: '100%' }} data-testid="map-component">
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: apikey }}
-          defaultCenter={ center }
-          defaultZoom={ zoom }
-        > { markers }
-        </GoogleMapReact>
-      </div>
+      <MapContext.Consumer>
+        { value => (
+
+          <div style={{ height: '87vh', width: '100%' }} data-testid="map-component">
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: apikey }}
+            defaultCenter={ center }
+            defaultZoom={ zoom }
+            >{ this.getMarkers(value) }
+          </GoogleMapReact>
+        </div>
+        )}
+      </MapContext.Consumer>
     )
   }
 }
