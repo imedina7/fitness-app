@@ -9,6 +9,7 @@ const getApiKey = (req, res) => {
     default:
         responseObject.apikey = config.G_APIKEY;
   }
+  res.json(responseObject);
 }
 
 const AuthApiHandlers = { getApiKey };
