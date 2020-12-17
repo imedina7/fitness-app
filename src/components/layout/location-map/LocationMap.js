@@ -1,15 +1,13 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react';
-import apiclient from '../../../lib/apiclient';
+import LocationTooltip from '../location-tooltip/LocationTooltip';
 
 export default class LocationMap extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-      locations: [],
-      gApiKey: undefined
+      markers: null
     }
-    this.apiclient = apiclient();
   }
   static defaultProps = {
     center: {
@@ -18,32 +16,23 @@ export default class LocationMap extends React.Component {
     },
     zoom: 11
   };
-
   componentDidMount () {
-    const { apiclient, setState } = this;
-    apiclient.getGoogleApiKey().then( responseData => {
-      setState({ gApiKey: responseData.apikey });
-    }).catch(err => console.error('Failed to get google api key from api: ', err));
-
-    apiclient.getLocations().then(responseData => {
-      setState({ locations: responseData });
-    }).catch(err => console.error('Failed to get locations from api: ', err));
-
+    const markers = this.props.locations.map( location => (
+    <div lng={location.geolocation.coordinates[0]} key={location._id} lat={location.geolocation.coordinates[1]}>{location.title}</div>
+    ));
+    this.setState({ markers });
   }
-
   render () {
+    const { locations, apikey, center, zoom } = this.props;
+    const { markers } = this.state;
+    console.log(locations);
     return (
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div style={{ height: '80vh', width: '100%' }} data-testid="map-component">
         <GoogleMapReact
-          bootstrapURLKeys={{ key: this.state.gApiKey }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          <LocationTooltip 
-            lat={59.955413}
-            lng={30.337844}
-            text="My Marker"
-          />
+          bootstrapURLKeys={{ key: apikey }}
+          defaultCenter={ center }
+          defaultZoom={ zoom }
+        > { markers }
         </GoogleMapReact>
       </div>
     )

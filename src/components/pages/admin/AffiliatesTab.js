@@ -1,22 +1,29 @@
 import React from 'react'
 import { AdminContext } from './admin-context';
+import { Route } from 'react-router-dom';
+import Modal from '../../layout/modal/Modal';
 
-export default function AffiliatesTab() {
+import ButtonLink from '../../layout/button-link/ButtonLink';
+
+export default function AffiliatesTab({onEdit, onDelete}) {
 
   return (
-    <div>
+    <div className="app-tab">
 
       <h2>Manage Affiliates:</h2>
       <AdminContext.Consumer>
         { value => (
+        <>
         <table>
           <thead>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Address</th>
-            <th>Email</th>
-            <th>Plan</th>
-            <th>Actions</th>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Plan</th>
+              <th>Actions</th>
+            </tr>
           </thead>
           <tbody>
           { value.affiliates.map(affiliate => (
@@ -25,12 +32,17 @@ export default function AffiliatesTab() {
               <td>{affiliate.lastName}</td>
               <td>{affiliate.address}</td>
               <td>{affiliate.email}</td>
-              <td>{affiliate.plantype}</td>
-              <td><button>Edit</button>|<button>Delete</button></td>
+              <td>{affiliate.plan}</td>
+              <td><button onClick={ onEdit(affiliate, "affiliate") }>Edit</button>|<button onClick={ onDelete(affiliate, "affiliate") }>Delete</button></td>
             </tr>
           )) }
           </tbody>
         </table>
+        <ButtonLink url="/admin/new/affiliate" title="Add affiliate" />
+        <Route path="/admin/new/affiliate">
+            <Modal></Modal>
+        </Route>
+        </>
         )}
       </AdminContext.Consumer>
     </div>

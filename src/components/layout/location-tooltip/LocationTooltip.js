@@ -13,7 +13,9 @@ export class LocationTooltip extends Component {
     render() {
         const { location } = this.state;
         return (
-            <div>
+            <div 
+            lat={ location.geolocation.coordinates[0] }
+            lng={ location.geolocation.coordinates[1] }>
                 <h3>{location.title}</h3>
                 <p>
                     

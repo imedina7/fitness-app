@@ -67,10 +67,39 @@ input[type=text], input[type=password] {
   list-style: none;
   margin-bottom: -1px;
   padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border-radius: 0.3em 0.3em 0 0;
 }
 
 .tab-list-active {
   background-color: white;
   border: solid #ccc;
   border-width: 1px 1px 0 1px;
+}
+div.app-tab {
+  background-color: #FFFFFF;
+  padding: 0.5em 0.8em;
+}
+table {
+  width: 100%;
+  margin: 0.5em 0;
+}
+table tbody tr {
+  font-size: 0.8em;
+}
+table thead th {
+  font-size: 0.9em;
+}
+table thead {
+  background-color: #777777;
+  color: #FFFFFF;
+}
+table thead th, table tbody td {
+  padding: 0.2em 0.35em;
+}
+table tbody tr:nth-child(odd) {
+  background-color: #dddddd;
+}
+table tbody tr:nth-child(even) {
+  background-color: #bebebe;
 }

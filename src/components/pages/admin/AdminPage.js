@@ -28,6 +28,12 @@ export default class AdminPage extends React.Component {
     }
     this.apiclient = apiclient();
   }
+  deleteItem = (item, type) => {
+    console.log(item, type);
+  }
+  editItem = (item, type) => {
+    console.log(item, type);
+  }
   openNewAffiliateTab = () => {
     const tabset = this.state.tabset;
     const tab = {
@@ -48,11 +54,12 @@ export default class AdminPage extends React.Component {
     
     const { apiclient } = this;
 
-    apiclient.getLocations().then((locations) => this.setState({data: { locations }}) )
-    .catch(err => console.error(err) );
+    apiclient.getLocations().then(
+      (locations) => this.setState({data: { locations }}) 
+    ).catch(err => console.error(err) );
 
-    apiclient.getAffiliates().then((affiliates) => this.setState({data: { affiliates }}) )
-    .catch(err => console.error(err) );
+    apiclient.getAffiliates().then((affiliates) => this.setState({data: { affiliates }}) 
+    ).catch(err => console.error(err) );
   }
   render() {
     const { closeTab, state: {data} } = this;
@@ -65,8 +72,8 @@ export default class AdminPage extends React.Component {
             {Array.from(this.state.tabset).map((tab) => { 
               const TabElement = tab.element;
               return (
-                <div label={tab.label} closeable={tab.closeable} onClose={ closeTab(tab) }>
-                  <TabElement />
+                <div label={tab.label} key={tab.label} closeable={tab.closeable} onClose={ closeTab(tab) }>
+                  <TabElement onDelete={ this.deleteItem } onEdit={ this.editItem }/>
                 </div>
               )
             })}

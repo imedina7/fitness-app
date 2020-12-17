@@ -8,9 +8,10 @@ class Tab extends Component {
     onClick: PropTypes.func.isRequired
   };
 
-  onClick = () => {
+  onClick = (e) => {
     const { label, onClick } = this.props;
     onClick(label);
+    e.stopPropagation();
   }
   render() {
     const {
