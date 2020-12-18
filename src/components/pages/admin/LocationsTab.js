@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import { Route, useHistory } from 'react-router-dom';
 
@@ -7,24 +8,8 @@ import ButtonLink from '../../layout/button-link/ButtonLink';
 
 import AdminContext from './admin-context';
 
-import apiclient from '../../../lib/apiclient';
-
 export default function LocationsTab() {
   const history = useHistory();
-  const client = apiclient();
-
-  // eslint-disable-next-line func-names
-  const handleSubmit = function () {
-    client
-      // eslint-disable-next-line react/no-this-in-sfc
-      .newLocation(this.state)
-      .then(() => {
-        // eslint-disable-next-line no-console
-        console.log('Location saved successfuly');
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.error(err));
-  };
 
   return (
     <div className="app-tab">
@@ -62,12 +47,12 @@ export default function LocationsTab() {
             <ButtonLink url="/admin/new/location" title="Add location" />
             <Route path="/admin/new/location">
               <Modal title="New location" onClose={history.goBack}>
-                <NewLocationForm onSubmit={handleSubmit()} />
+                <NewLocationForm />
               </Modal>
             </Route>
             <Route path="/admin/edit/location">
               <Modal title="Edit location" onClose={history.goBack}>
-                <NewLocationForm onSubmit={handleSubmit()} />
+                <NewLocationForm />
               </Modal>
             </Route>
           </>

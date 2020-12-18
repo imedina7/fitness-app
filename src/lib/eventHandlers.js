@@ -1,4 +1,4 @@
-import apiclient from "./apiclient";
+import apiclient from './apiclient';
 
 export const formEvents = {
   submitSignupForm(e) {
@@ -8,7 +8,7 @@ export const formEvents = {
     client
       .newAffiliate(this.state)
       .then(() => {
-        console.log("New affiliate request sent");
+        console.log('New affiliate request sent');
       })
       .catch((err) => {
         console.error(err);
