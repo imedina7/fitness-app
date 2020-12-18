@@ -2,25 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Tab extends Component {
-  static propTypes = {
-    activeTab: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired
-  };
-
   onClick = (e) => {
     const { label, onClick } = this.props;
     onClick(label);
     e.stopPropagation();
-  }
+  };
+
+  handleKeyPress = () => {};
+
   render() {
     const {
       onClick,
-      props: {
-        activeTab,
-        label,
-        closeable
-      },
+      handleKeyPress,
+      props: { activeTab, label, closeable },
     } = this;
 
     let className = 'tab-list-item';
@@ -30,15 +24,19 @@ class Tab extends Component {
     }
 
     return (
-      <li
-        className={className}
-        onClick={onClick}
-      >
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+      <li className={className} onClick={onClick} onKeyPress={handleKeyPress}>
         {label}
-        {( closeable ) ? (<span className="tab-close-btn">x</span>) : ''}
+        {closeable ? <span className="tab-close-btn">x</span> : ''}
       </li>
     );
   }
 }
+
+Tab.propTypes = {
+  activeTab: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Tab;

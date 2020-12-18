@@ -37,7 +37,7 @@ export class SignupForm extends Component {
     }
 
     const parentEventHandler = onSubmit.bind(this);
-    parentEventHandler(e);
+    return parentEventHandler(e);
   };
 
   getPlanInfo = () => {

@@ -1,25 +1,25 @@
 div.sidebar-container {
-    padding: 1em 0.5em;
-    font-weight: bold;
-    max-width: 100%;
-    background: rgba(16, 86, 104, 0.657);
-    position: fixed;
-    min-width: 200px;
-    z-index: 1000;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    backdrop-filter: blur(3px);
-    transform: translateX(100%);
-    transition: 200ms transform;
+  padding: 1em 0.5em;
+  font-weight: bold;
+  max-width: 100%;
+  background: rgba(16, 86, 104, 0.657);
+  position: fixed;
+  min-width: 200px;
+  z-index: 1000;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  backdrop-filter: blur(3px);
+  transform: translateX(100%);
+  transition: 200ms transform;
 }
 div.sidebar-container.open {
-    transform: translateX(0)
+  transform: translateX(0);
 }
-div.sidebar-container ul li{
-    padding: 0.4em 0.3em; 
+div.sidebar-container ul li {
+  padding: 0.4em 0.3em;
 }
 div.sidebar-container ul li a {
-    color: #FFFFFF;
-    text-shadow: 0 2px 2px #00000077;
+  color: #ffffff;
+  text-shadow: 0 2px 2px #00000077;
 }

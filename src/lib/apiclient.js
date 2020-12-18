@@ -1,8 +1,7 @@
-import axios from "axios";
-import Location from "../model/Location";
+import axios from 'axios';
 
 export default function apiclient() {
-  const BASE_URL = "";
+  const BASE_URL = '';
   return {
     getLocations: async () => {
       const locationList = await axios.get(`${BASE_URL}/api/v1/locations`);
@@ -13,7 +12,7 @@ export default function apiclient() {
     },
     getLocationsAndWeather: async () => {
       const locationList = await axios.get(
-        `${BASE_URL}/api/v1/locations?options=weather`
+        `${BASE_URL}/api/v1/locations?options=weather`,
       );
 
       const locationObjectArray = locationList.data;
@@ -22,7 +21,7 @@ export default function apiclient() {
     },
     getLocationFromId: async (_id) => {
       const locationObjString = await axios.get(
-        `${BASE_URL}/api/v1/location/${_id}`
+        `${BASE_URL}/api/v1/location/${_id}`,
       );
       const locationObj = JSON.parse(locationObjString);
 
@@ -35,7 +34,7 @@ export default function apiclient() {
     newAffiliate: async (affiliate) => {
       const response = await axios.put(
         `${BASE_URL}/api/v1/affiliate`,
-        affiliate
+        affiliate,
       );
       return response.data;
     },

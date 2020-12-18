@@ -2,13 +2,7 @@
   height: 100%;
   pointer-events: none;
 }
-/*
---pine-tree: #1f271b;
---blue-sapphire: #19647e;
---verdigris: #28afb0ff;
---orange-yellow-crayola: #f4d35e;
---sandy-brown: #ee964b;
-*/
+
 .App-header {
   background-color: #2e3532;
   height: 12vh;
@@ -19,12 +13,11 @@
   font-size: calc(10px + 2vmin);
   color: white;
   padding: 2px 10px;
-
 }
 
 .App-header h1 {
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.2em;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
   margin-left: 0.5em;

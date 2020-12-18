@@ -3,30 +3,23 @@ import PropTypes from 'prop-types';
 import Tab from './Tab';
 
 class Tabs extends Component {
-  static propTypes = {
-    children: PropTypes.instanceOf(Array).isRequired,
-  }
-
   constructor(props) {
     super(props);
-
+    const { children } = this.props;
     this.state = {
-      activeTab: this.props.children[0].props.label,
+      activeTab: children[0].props.label,
     };
   }
 
   onClickTabItem = (tab) => {
     this.setState({ activeTab: tab });
-  }
+  };
+
   render() {
     const {
       onClickTabItem,
-      props: {
-        children,
-      },
-      state: {
-        activeTab,
-      }
+      props: { children },
+      state: { activeTab },
     } = this;
 
     return (
@@ -57,5 +50,9 @@ class Tabs extends Component {
     );
   }
 }
+
+Tabs.propTypes = {
+  children: PropTypes.instanceOf(Array).isRequired,
+};
 
 export default Tabs;

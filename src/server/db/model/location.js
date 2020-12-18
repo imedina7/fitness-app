@@ -2,55 +2,50 @@ import mongoose from 'mongoose';
 import Location from '../../../model/Location.js';
 
 export default class LocationDocument extends Location {
-
   static getModel() {
-
-    /*
-  
-    */
     if (this.model === undefined) {
       const schema = new mongoose.Schema({
         title: {
           type: String,
-          required: true 
+          required: true,
         },
         city: {
           type: String,
-          required: true
+          required: true,
         },
         country: {
           type: String,
-          required: true 
+          required: true,
         },
         address: {
           type: String,
-          required: true
+          required: true,
         },
         geolocation: {
           type: {
             type: String,
             enum: ['Point'],
-            required: true
+            required: true,
           },
           coordinates: {
             type: [Number],
-            required: true
-          }
+            required: true,
+          },
         },
         openhours: {
           type: String,
-          required: true
+          required: true,
         },
         type: {
           type: String,
-          required: true
+          required: true,
         },
-
       });
       this.model = mongoose.model('Location', schema, 'locations');
     }
     return this.model;
   }
+
   async save() {
     const LocationModel = LocationDocument.getModel();
     const newLocation = new LocationModel({
@@ -60,8 +55,8 @@ export default class LocationDocument extends Location {
       address: this.address,
       geolocation: this.geolocation,
       openHours: this.openHours,
-      type: this.type
+      type: this.type,
     });
-    return await newLocation.save();
+    return newLocation.save();
   }
 }
