@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 
-export class NewLocationForm extends Component {
+class NewLocationForm extends Component {
   constructor(props) {
     super(props);
     const { edit } = this.props;
