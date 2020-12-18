@@ -2,7 +2,13 @@ div.location-tooltip h3 {
   margin-bottom: 0.3em;
   font-size: 1.3em;
 }
+
+div.location-tooltip em {
+  font-weight: bold;
+}
+
 div.location-tooltip {
+  text-shadow: 0 0.2em 0.1em #000000;
   background-color: #000000b2;
   color: #ffffff;
   min-width: 170px;

@@ -11,7 +11,8 @@ class Tabs extends Component {
     };
   }
 
-  onClickTabItem = (tab) => {
+  onClickTabItem = (tab, e) => {
+    e.stopPropagation();
     this.setState({ activeTab: tab });
   };
 
@@ -26,16 +27,14 @@ class Tabs extends Component {
       <div className="tabs">
         <ol className="tab-list">
           {children.map((child) => {
-            const { label, closeable, onClose } = child.props;
+            const { label } = child.props;
 
             return (
               <Tab
                 activeTab={activeTab}
                 key={label}
                 label={label}
-                closeable={closeable}
                 onClick={onClickTabItem}
-                onClose={onClose}
               />
             );
           })}

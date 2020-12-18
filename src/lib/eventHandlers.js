@@ -1,19 +1,20 @@
 import apiclient from './apiclient';
 
-export const formEvents = {
-  submitSignupForm(e) {
-    e.preventDefault();
-    const client = apiclient();
+const client = apiclient();
 
-    client
-      .newAffiliate(this.state)
-      .then(() => {
-        console.log('New affiliate request sent');
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+export const formEvents = {
+  async submitSignupForm(affiliate) {
+    await client.newAffiliate(affiliate);
   },
 };
 
 export const appEvents = {};
+
+export const adminEvents = {
+  async submitNewLocation(location) {
+    await client.newLocation(location);
+  },
+  async deleteAffiliate(id) {
+    await client.deleteAffiliate(id);
+  },
+};

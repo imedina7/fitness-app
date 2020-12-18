@@ -17,7 +17,7 @@ const getSingleAffiliate = (req, res) => {
   res.sendStatus(200);
 };
 const deleteAffiliate = (req, res) => {
-  AffiliateModel.findByIdAndRemove(req.param.id)
+  AffiliateModel.deleteOne({ _id: req.params.id })
     .then(() => {
       res.sendStatus(204);
     })

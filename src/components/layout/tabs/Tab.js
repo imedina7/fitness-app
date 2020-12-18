@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 class Tab extends Component {
   onClick = (e) => {
-    const { label, onClick } = this.props;
-    onClick(label);
     e.stopPropagation();
+    const { label, onClick } = this.props;
+    onClick(label, e);
   };
 
   handleKeyPress = () => {};
@@ -14,7 +14,7 @@ class Tab extends Component {
     const {
       onClick,
       handleKeyPress,
-      props: { activeTab, label, closeable },
+      props: { activeTab, label },
     } = this;
 
     let className = 'tab-list-item';
@@ -27,7 +27,6 @@ class Tab extends Component {
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <li className={className} onClick={onClick} onKeyPress={handleKeyPress}>
         {label}
-        {closeable ? <span className="tab-close-btn">x</span> : ''}
       </li>
     );
   }

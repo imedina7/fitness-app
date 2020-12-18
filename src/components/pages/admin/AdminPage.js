@@ -5,6 +5,7 @@ import LocationsTab from './LocationsTab';
 import AffiliatesTab from './AffiliatesTab';
 import apiclient from '../../../lib/apiclient';
 import AdminContext from './admin-context';
+// import { adminEvents } from '../../../lib/eventHandlers';
 
 export default class AdminPage extends React.Component {
   constructor(props) {
@@ -13,12 +14,10 @@ export default class AdminPage extends React.Component {
 
     tabset.add({
       label: 'Locations',
-      closeable: false,
       element: LocationsTab,
     });
     tabset.add({
       label: 'Affiliates',
-      closeable: false,
       element: AffiliatesTab,
     });
     this.state = { tabset, locations: [], affiliates: [] };
@@ -45,47 +44,31 @@ export default class AdminPage extends React.Component {
     this.setState({ tabset });
   };
 
-  closeTab = (tab) => {
-    if (!tab.closeable) {
-      return;
-    }
-    const { tabset } = this.state;
-    tabset.delete(tab);
-    this.setState({ tabset });
+  setAffiliates = (affiliates) => {
+    this.setState({ affiliates });
   };
 
-  deleteItem = (item, type) => {
-    console.log(item, type);
-  };
-
-  editItem = (item, type) => {
-    console.log(item, type);
+  setLocations = (affiliates) => {
+    this.setState({ affiliates });
   };
 
   render() {
     const {
-      closeTab,
-      state: { locations, affiliates },
+      state: { locations, setLocations, affiliates, setAffiliates },
     } = this;
     const { tabset } = this.state;
     return (
       <div>
         <h2>Admin page</h2>
-        <AdminContext.Provider value={{ locations, affiliates }}>
+        <AdminContext.Provider
+          value={{ locations, setLocations, affiliates, setAffiliates }}
+        >
           <Tabs>
             {Array.from(tabset).map((tab) => {
               const TabElement = tab.element;
               return (
-                <div
-                  label={tab.label}
-                  key={tab.label}
-                  closeable={tab.closeable}
-                  onClose={closeTab(tab)}
-                >
-                  <TabElement
-                    onDelete={this.deleteItem}
-                    onEdit={this.editItem}
-                  />
+                <div label={tab.label} key={tab.label}>
+                  <TabElement />
                 </div>
               );
             })}

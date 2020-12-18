@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import './App.css';
 
 // Layout components
@@ -18,7 +18,7 @@ const { useState } = React;
 
 function App() {
   const [sidebarOpenState, setSidebarOpenState] = useState(false);
-
+  const history = useHistory();
   return (
     <div className="App">
       <AppHeader
@@ -30,7 +30,12 @@ function App() {
         <HomePage />
       </Route>
       <Route path="/join">
-        <SignupPage onSubmit={formEvents.submitSignupForm} />
+        <SignupPage
+          onSubmit={async (e) => {
+            await formEvents.submitSignupForm(e);
+            history.push('/');
+          }}
+        />
       </Route>
       <Route path="/map">
         <MapPage />

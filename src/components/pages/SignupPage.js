@@ -6,7 +6,7 @@ export default function SignupPage({ onSubmit }) {
     <section className="signup-modal">
       <div className="wrapper">
         <h2 data-testid="signup-page-title">Sign up:</h2>
-        <SignupForm onSubmit={onSubmit} />
+        <SignupForm itemToEdit={{}} onSubmit={onSubmit} />
       </div>
     </section>
   );

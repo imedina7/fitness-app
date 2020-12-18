@@ -36,8 +36,7 @@ class SignupForm extends Component {
       return this.setErrMsg('Invalid email');
     }
 
-    const parentEventHandler = onSubmit.bind(this);
-    return parentEventHandler(e);
+    return onSubmit(this.state);
   };
 
   getPlanInfo = () => {
@@ -57,6 +56,10 @@ class SignupForm extends Component {
 
   render() {
     const { errorMsg } = this.state;
+    const { itemToEdit, submitLabel } = this.props;
+
+    const { firstName, lastName, address, email } = itemToEdit;
+
     return (
       <form
         onSubmit={this.validateAndSubmit}
@@ -73,6 +76,7 @@ class SignupForm extends Component {
             id="firstname"
             name="firstname"
             type="text"
+            defaultValue={firstName || ''}
             data-testid="firstname-field"
           />
         </div>
@@ -82,6 +86,7 @@ class SignupForm extends Component {
             id="lastname"
             name="lastname"
             type="text"
+            defaultValue={lastName || ''}
             data-testid="lastname-field"
           />
         </div>
@@ -91,6 +96,7 @@ class SignupForm extends Component {
             id="address"
             name="address"
             type="text"
+            defaultValue={address || ''}
             data-testid="address-field"
           />
         </div>
@@ -100,6 +106,7 @@ class SignupForm extends Component {
             id="email"
             name="email"
             type="text"
+            defaultValue={email || ''}
             data-testid="email-field"
           />
         </div>
@@ -134,7 +141,11 @@ class SignupForm extends Component {
           <p data-testid="plan-info-paragraph">{this.getPlanInfo()}</p>
         </div>
         <div className="formitem">
-          <input type="submit" value="Sign up" data-testid="submit-btn" />
+          <input
+            type="submit"
+            value={submitLabel || 'Sign up'}
+            data-testid="submit-btn"
+          />
         </div>
       </form>
     );

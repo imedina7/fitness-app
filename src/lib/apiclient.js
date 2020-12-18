@@ -42,6 +42,10 @@ export default function apiclient() {
       const response = await axios.get(`${BASE_URL}/api/v1/affiliates`);
       return response.data;
     },
+    deleteAffiliate: async (id) => {
+      const response = await axios.delete(`${BASE_URL}/api/v1/affiliate/${id}`);
+      return response.data;
+    },
     getGoogleApiKey: async () => {
       const response = await axios.get(`${BASE_URL}/api/v1/auth`);
       return response.data;
