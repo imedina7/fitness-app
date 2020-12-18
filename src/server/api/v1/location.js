@@ -64,6 +64,18 @@ const getSingleLocation = (req, res) => {
   res.json([]);
 };
 
+const updateLocation = (req, res) => {
+  LocationModel.updateOne({ _id: req.params.id })
+    .then((location) => {
+      res.json(location);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+  res.json([]);
+};
+
 const putLocation = (req, res) => {
   const location = req.body;
   console.log(req.body);
@@ -108,6 +120,7 @@ const deleteLocation = (req, res) => {
 const LocationApiHandlers = {
   getLocations,
   putLocation,
+  updateLocation,
   deleteLocation,
   getSingleLocation,
 };
