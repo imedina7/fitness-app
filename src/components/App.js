@@ -17,19 +17,20 @@ import { formEvents } from '../lib/eventHandlers';
 const { useState } = React;
 
 function App() {
-  
-  const [ sidebarOpenState, setSidebarOpenState ] = useState(false);
+  const [sidebarOpenState, setSidebarOpenState] = useState(false);
 
   return (
     <div className="App">
-      <AppHeader onToggleMenuState={ (e, isMenuOpen) => {
-        setSidebarOpenState(isMenuOpen);
-      }}/>
+      <AppHeader
+        onToggleMenuState={(e, isMenuOpen) => {
+          setSidebarOpenState(isMenuOpen);
+        }}
+      />
       <Route exact path="/">
         <HomePage />
       </Route>
       <Route path="/join">
-        <SignupPage onSubmit={ formEvents.submitSignupForm }/>
+        <SignupPage onSubmit={formEvents.submitSignupForm} />
       </Route>
       <Route path="/map">
         <MapPage />
@@ -37,7 +38,7 @@ function App() {
       <Route path="/admin">
         <AdminPage />
       </Route>
-      <Sidebar isOpen={ sidebarOpenState } />
+      <Sidebar isOpen={sidebarOpenState} />
     </div>
   );
 }

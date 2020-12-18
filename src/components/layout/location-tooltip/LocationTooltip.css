@@ -1,23 +1,22 @@
 div.location-tooltip {
-    background-color: #000000b2;
-    color: #FFFFFF;
-    min-width: 170px;
-    min-height: 80px;
-    padding: 0.3em 0.5em;
-    border-radius: 0.3em;
-    backdrop-filter: blur(1px);
-    z-index: 1000;
-    
+  background-color: #000000b2;
+  color: #ffffff;
+  min-width: 170px;
+  min-height: 80px;
+  padding: 0.3em 0.5em;
+  border-radius: 0.3em;
+  backdrop-filter: blur(1px);
+  z-index: 1000;
 }
 div.location-tooltip::before {
-    z-index: 998;
-    content: ' ';
-    border-top: 10px solid #000000b2;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid #000000b2;
-    transform: translateX(-0.3px) rotate(-45deg);
-    position: absolute;
-    left: -9px;
-    top: 7px;
+  z-index: 998;
+  content: ' ';
+  border-top: 10px solid #000000b2;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #000000b2;
+  transform: translateX(-0.3px) rotate(-45deg);
+  position: absolute;
+  left: -9px;
+  top: 7px;
 }
