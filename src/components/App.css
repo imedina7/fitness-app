@@ -39,7 +39,7 @@ form .formitem .error-msg {
   color: #FF0000;
   font-size: .7em;
 }
-input[type=text], label, input[type=password] {
+input[type=text], input[type=number], label, input[type=password] {
   padding: 0.3em;
   margin: 0.3em 0.4em;
 }
@@ -51,7 +51,7 @@ input[type=submit] {
   border-radius: 0.3em;
   margin: 1em 0;
 }
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=number] {
   background: linear-gradient(#FFFFFF, #F0F0F0);
   border: 1px solid #6e8aad;
   border-radius: 3px;
