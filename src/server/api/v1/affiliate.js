@@ -15,6 +15,7 @@ const getAffiliates = (req, res) => {
 };
 const updateAffiliate = (req, res) => {
   const { firstname, lastname, email, address, plantype } = req.body;
+
   const updatedAffiliate = {
     firstName: firstname,
     lastName: lastname,
@@ -22,6 +23,7 @@ const updateAffiliate = (req, res) => {
     address,
     plan: plantype,
   };
+
   AffiliateModel.updateOne({ _id: req.params.id }, updatedAffiliate)
     .then((affiliate) => {
       res.json(affiliate);
