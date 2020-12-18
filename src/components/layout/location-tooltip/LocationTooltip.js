@@ -1,7 +1,7 @@
-import React from "react";
-import "./LocationTooltip.css";
+import React from 'react';
+import './LocationTooltip.css';
 
-export function LocationTooltip({ location }) {
+function LocationTooltip({ location }) {
   return (
     <div className="location-tooltip">
       <h3>{location.title}</h3>
