@@ -95,6 +95,21 @@ const putLocation = (req, res) => {
     });
 };
 
-const LocationApiHandlers = { getLocations, putLocation, getSingleLocation };
+const deleteLocation = (req, res) => {
+  LocationModel.deleteOne({ _id: req.params.id })
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+const LocationApiHandlers = {
+  getLocations,
+  putLocation,
+  deleteLocation,
+  getSingleLocation,
+};
 
 export default LocationApiHandlers;

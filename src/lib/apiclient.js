@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default function apiclient() {
-  const BASE_URL = '';
+  const BASE_URL = 'https://abm-fitness-master-g6qyyj6318x.herokuapp.com';
   return {
     getLocations: async () => {
       const locationList = await axios.get(`${BASE_URL}/api/v1/locations`);
@@ -44,6 +44,10 @@ export default function apiclient() {
     },
     deleteAffiliate: async (id) => {
       const response = await axios.delete(`${BASE_URL}/api/v1/affiliate/${id}`);
+      return response.data;
+    },
+    deleteLocation: async (id) => {
+      const response = await axios.delete(`${BASE_URL}/api/v1/location/${id}`);
       return response.data;
     },
     getGoogleApiKey: async () => {

@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import { Route, useHistory } from 'react-router-dom';
@@ -39,7 +41,17 @@ export default function LocationsTab() {
                     <td>{location.type}</td>
                     <td>
                       <button type="button">Edit</button>|
-                      <button type="button">Delete</button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (confirm('Are you sure?')) {
+                            adminEvents.deleteLocation(location._id);
+                          }
+                        }}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}
