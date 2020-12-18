@@ -54,7 +54,7 @@ export default class LocationDocument extends Location {
       country: this.country,
       address: this.address,
       geolocation: this.geolocation,
-      openHours: this.openHours,
+      openhours: this.openHours,
       type: this.type,
     });
     return newLocation.save();

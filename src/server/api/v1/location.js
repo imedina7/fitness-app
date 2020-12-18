@@ -66,9 +66,13 @@ const getSingleLocation = (req, res) => {
 
 const putLocation = (req, res) => {
   const location = req.body;
+  console.log(req.body);
   const locationCoords = {
     type: 'Point',
-    coordinates: [location.longitude, location.latitude],
+    coordinates: [
+      parseFloat(location.longitude),
+      parseFloat(location.latitude),
+    ],
   };
   const locationDoc = new LocationDocument(
     location.title,
@@ -77,7 +81,9 @@ const putLocation = (req, res) => {
     location.address,
     locationCoords,
     location.type,
+    location.openhours,
   );
+
   locationDoc
     .save()
     .then(() => {

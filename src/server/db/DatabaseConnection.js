@@ -11,7 +11,7 @@ export default class DatabaseConnection {
       .then(() => {
         this.connection = mongoose.connection;
         // eslint-disable-next-line no-console
-        console.log('Connected successfuly to database.');
+        console.log('Connected successfully to database.');
       })
       .catch((err) => {
         // eslint-disable-next-line no-console

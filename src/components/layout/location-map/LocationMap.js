@@ -12,8 +12,8 @@ export default class LocationMap extends React.Component {
         location={location}
         // eslint-disable-next-line no-underscore-dangle
         key={location._id}
-        lat={location.geolocation.coordinates[0]}
-        lng={location.geolocation.coordinates[1]}
+        lng={location.geolocation.coordinates[0]}
+        lat={location.geolocation.coordinates[1]}
       />
     ));
 

@@ -107,6 +107,15 @@ class NewLocationForm extends Component {
             data-testid="longitude-field"
           />
         </div>
+        <div className="formitem">
+          <label htmlFor="openhours">Open Hours: </label>
+          <input
+            id="openhours"
+            name="openhours"
+            type="text"
+            data-testid="openhours-field"
+          />
+        </div>
         <h3>Type: </h3>
         <div className="formitem type-selector">
           <select name="type">
