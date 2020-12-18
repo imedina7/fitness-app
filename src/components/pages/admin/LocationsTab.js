@@ -7,6 +7,7 @@ import NewLocationForm from '../../forms/new-location-form/NewLocationForm';
 import ButtonLink from '../../layout/button-link/ButtonLink';
 
 import AdminContext from './admin-context';
+import { adminEvents } from '../../../lib/eventHandlers';
 
 export default function LocationsTab() {
   const history = useHistory();
@@ -47,7 +48,12 @@ export default function LocationsTab() {
             <ButtonLink url="/admin/new/location" title="Add location" />
             <Route path="/admin/new/location">
               <Modal title="New location" onClose={history.goBack}>
-                <NewLocationForm />
+                <NewLocationForm
+                  onSubmit={async (location) => {
+                    await adminEvents.submitNewLocation(location);
+                    history.goBack();
+                  }}
+                />
               </Modal>
             </Route>
             <Route path="/admin/edit/location">

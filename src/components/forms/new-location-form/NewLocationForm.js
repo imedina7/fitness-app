@@ -41,8 +41,7 @@ class NewLocationForm extends Component {
       return this.setErrMsg('All fields are required.');
     }
     this.setErrMsg('');
-    const parentEventHandler = onSubmit.bind(this);
-    return parentEventHandler(e);
+    return onSubmit(this.state);
   };
 
   render() {
@@ -94,6 +93,7 @@ class NewLocationForm extends Component {
             id="latitude"
             name="latitude"
             type="number"
+            step="any"
             data-testid="latitude-field"
           />
         </div>
@@ -103,6 +103,7 @@ class NewLocationForm extends Component {
             id="longitude"
             name="longitude"
             type="number"
+            step="any"
             data-testid="longitude-field"
           />
         </div>

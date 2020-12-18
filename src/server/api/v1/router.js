@@ -7,6 +7,7 @@ const ApiRouterV1 = () => {
   const router = new ExpressRouter();
 
   router.get('/locations', LocationApiHandlers.getLocations);
+  router.put('/location', LocationApiHandlers.putLocation);
   router.get('/location/:id', LocationApiHandlers.getSingleLocation);
   router.get('/affiliates', AffiliateApiHandlers.getAffiliates);
   router.put('/affiliate', AffiliateApiHandlers.putAffiliate);

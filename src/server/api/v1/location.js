@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import LocationDocument from '../../db/model/location.js';
 import config from '../../config.js';
@@ -41,14 +42,12 @@ const getLocations = (req, res) => {
           .then((locationsPlusWeather) => {
             res.json(locationsPlusWeather);
           })
-          // eslint-disable-next-line no-console
           .catch((err) => console.error(err));
       } else {
         res.json(locationList);
       }
     })
     .catch((err) => {
-      // eslint-disable-next-line no-console
       console.error(err);
       res.sendStatus(500);
     });
@@ -59,13 +58,37 @@ const getSingleLocation = (req, res) => {
       res.json(location);
     })
     .catch((err) => {
-      // eslint-disable-next-line no-console
       console.error(err);
       res.sendStatus(500);
     });
   res.json([]);
 };
 
-const LocationApiHandlers = { getLocations, getSingleLocation };
+const putLocation = (req, res) => {
+  const location = req.body;
+  const locationCoords = {
+    type: 'Point',
+    coordinates: [location.longitude, location.latitude],
+  };
+  const locationDoc = new LocationDocument(
+    location.title,
+    location.city,
+    location.country,
+    location.address,
+    locationCoords,
+    location.type,
+  );
+  locationDoc
+    .save()
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const LocationApiHandlers = { getLocations, putLocation, getSingleLocation };
 
 export default LocationApiHandlers;

@@ -1,6 +1,5 @@
 export default class Location {
-  constructor(id, title, city, country, address, geolocation, type, openhours) {
-    this._id = id;
+  constructor(title, city, country, address, geolocation, type, openhours) {
     this.title = title;
     this.city = city;
     this.country = country;
