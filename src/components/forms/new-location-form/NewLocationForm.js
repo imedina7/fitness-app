@@ -53,7 +53,6 @@ class NewLocationForm extends Component {
     e.preventDefault();
     const { onSubmit } = this.props;
     const {
-      _id,
       title,
       city,
       country,
@@ -64,16 +63,7 @@ class NewLocationForm extends Component {
     } = this.state;
 
     if (
-      !(
-        _id &&
-        title &&
-        city &&
-        country &&
-        address &&
-        latitude &&
-        longitude &&
-        type
-      )
+      !(title && city && country && address && latitude && longitude && type)
     ) {
       return this.setErrMsg('All fields are required.');
     }

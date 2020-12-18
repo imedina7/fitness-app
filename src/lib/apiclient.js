@@ -38,6 +38,13 @@ export default function apiclient() {
       );
       return response.data;
     },
+    editAffiliate: async (affiliate) => {
+      const response = await axios.post(
+        `${BASE_URL}/api/v1/affiliate/${affiliate._id}`,
+        affiliate,
+      );
+      return response.data;
+    },
     newAffiliate: async (affiliate) => {
       const response = await axios.put(
         `${BASE_URL}/api/v1/affiliate`,

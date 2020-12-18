@@ -5,8 +5,9 @@ import './SignupForm.css';
 class SignupForm extends Component {
   constructor(props) {
     super(props);
+    const { itemToEdit } = this.props;
 
-    this.state = {};
+    this.state = itemToEdit ? { ...itemToEdit } : {};
     this.plans = {
       basic: 'This is a basic plan',
       premium: 'This is the premium plan',

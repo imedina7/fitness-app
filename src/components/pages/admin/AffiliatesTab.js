@@ -94,9 +94,8 @@ export default function AffiliatesTab() {
             submitLabel="Save"
             itemToEdit={itemToEdit}
             onSubmit={async (affiliate) => {
-              await formEvents.submitSignupForm(affiliate);
+              await adminEvents.editAffiliate(affiliate);
               history.goBack();
-              adminData.pushAffiliate(affiliate);
             }}
           />
         </Modal>

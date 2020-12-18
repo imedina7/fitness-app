@@ -17,6 +17,9 @@ export const adminEvents = {
   async deleteAffiliate(id) {
     await client.deleteAffiliate(id);
   },
+  async editAffiliate(affiliate) {
+    await client.editAffiliate(affiliate);
+  },
   async deleteLocation(id) {
     await client.deleteLocation(id);
   },
