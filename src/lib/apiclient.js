@@ -31,6 +31,13 @@ export default function apiclient() {
       const response = await axios.put(`${BASE_URL}/api/v1/location`, location);
       return response.data;
     },
+    editLocation: async (location) => {
+      const response = await axios.post(
+        `${BASE_URL}/api/v1/location/${location._id}`,
+        location,
+      );
+      return response.data;
+    },
     newAffiliate: async (affiliate) => {
       const response = await axios.put(
         `${BASE_URL}/api/v1/affiliate`,
