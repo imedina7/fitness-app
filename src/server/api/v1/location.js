@@ -65,7 +65,7 @@ const getSingleLocation = (req, res) => {
 };
 
 const updateLocation = (req, res) => {
-  LocationModel.updateOne({ _id: req.params.id })
+  LocationModel.updateOne({ _id: req.params.id }, req.body)
     .then((location) => {
       res.json(location);
     })
@@ -73,7 +73,6 @@ const updateLocation = (req, res) => {
       console.error(err);
       res.sendStatus(500);
     });
-  res.json([]);
 };
 
 const putLocation = (req, res) => {

@@ -81,7 +81,13 @@ export default function LocationsTab() {
             </Route>
             <Route path="/admin/edit/location">
               <Modal title="Edit location" onClose={history.goBack}>
-                <NewLocationForm itemToEdit={itemToEdit} />
+                <NewLocationForm
+                  itemToEdit={itemToEdit}
+                  onSubmit={async (location) => {
+                    await adminEvents.editLocation(location);
+                    history.goBack();
+                  }}
+                />
               </Modal>
             </Route>
           </>

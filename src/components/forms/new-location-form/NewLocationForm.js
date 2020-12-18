@@ -4,8 +4,35 @@ import React, { Component } from 'react';
 class NewLocationForm extends Component {
   constructor(props) {
     super(props);
-    const { edit } = this.props;
-    this.state = edit ? { ...edit } : {};
+    const { itemToEdit } = this.props;
+    if (itemToEdit) {
+      const {
+        _id,
+        title,
+        city,
+        country,
+        address,
+        geolocation,
+        openhours,
+        type,
+      } = itemToEdit;
+      const {
+        coordinates: [longitude, latitude],
+      } = geolocation || { coordinates: [0, 0] };
+      this.state = {
+        _id,
+        title,
+        city,
+        country,
+        address,
+        latitude,
+        longitude,
+        openhours,
+        type,
+      };
+    } else {
+      this.state = {};
+    }
   }
 
   setErrMsg(msg) {
@@ -26,6 +53,7 @@ class NewLocationForm extends Component {
     e.preventDefault();
     const { onSubmit } = this.props;
     const {
+      _id,
       title,
       city,
       country,
@@ -36,7 +64,16 @@ class NewLocationForm extends Component {
     } = this.state;
 
     if (
-      !(title && city && country && address && latitude && longitude && type)
+      !(
+        _id &&
+        title &&
+        city &&
+        country &&
+        address &&
+        latitude &&
+        longitude &&
+        type
+      )
     ) {
       return this.setErrMsg('All fields are required.');
     }

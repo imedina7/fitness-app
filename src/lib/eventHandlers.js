@@ -20,4 +20,7 @@ export const adminEvents = {
   async deleteLocation(id) {
     await client.deleteLocation(id);
   },
+  async editLocation(location) {
+    await client.editLocation(location);
+  },
 };
