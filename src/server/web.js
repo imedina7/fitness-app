@@ -36,6 +36,14 @@ DatabaseConnection.getInstance();
 
 app.use('/api/v1', ApiRouterV1());
 
+app.get('/*', (req, res) => {
+  res.sendFile(join(__dirname, '/../../build/index.html'), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.listen(config.PORT, () => {
     console.log(`App started on port: ${config.PORT}`);
 });
