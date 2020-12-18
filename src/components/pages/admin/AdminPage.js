@@ -4,7 +4,7 @@ import Tabs from '../../layout/tabs/Tabs';
 import LocationsTab from './LocationsTab';
 import AffiliatesTab from './AffiliatesTab';
 import apiclient from '../../../lib/apiclient';
-import { AdminContext } from './admin-context';
+import AdminContext from './admin-context';
 
 export default class AdminPage extends React.Component {
   constructor(props) {

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const initContext = () => {
-  return {
-    locations: [],
-    affiliates: []
-  }
-}
+const initContext = () => ({
+  locations: [],
+  affiliates: [],
+});
 
-export const AdminContext = React.createContext(initContext());
+const AdminContext = React.createContext(initContext());
+
+export default AdminContext;

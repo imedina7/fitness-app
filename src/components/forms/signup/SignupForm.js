@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './SignupForm.css';
 
-export class SignupForm extends Component {
+class SignupForm extends Component {
   constructor(props) {
     super(props);
 

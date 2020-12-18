@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { AdminContext } from './admin-context';
+import AdminContext from './admin-context';
 import Modal from '../../layout/modal/Modal';
 
 import ButtonLink from '../../layout/button-link/ButtonLink';
