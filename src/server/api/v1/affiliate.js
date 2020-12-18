@@ -13,6 +13,16 @@ const getAffiliates = (req, res) => {
       res.sendStatus(500);
     });
 };
+const updateAffiliate = (req, res) => {
+  AffiliateModel.updateOne({ _id: req.params.id }, req.body)
+    .then((affiliate) => {
+      res.json(affiliate);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 const getSingleAffiliate = (req, res) => {
   res.sendStatus(200);
 };
@@ -49,6 +59,7 @@ const AffiliateApiHandlers = {
   getAffiliates,
   getSingleAffiliate,
   putAffiliate,
+  updateAffiliate,
   deleteAffiliate,
 };
 

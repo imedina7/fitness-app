@@ -14,6 +14,7 @@ const ApiRouterV1 = () => {
   router.delete('/affiliate/:id', AffiliateApiHandlers.deleteAffiliate);
   router.delete('/location/:id', LocationApiHandlers.deleteLocation);
   router.post('/location/:id', LocationApiHandlers.updateLocation);
+  router.post('/affiliate/:id', AffiliateApiHandlers.updateAffiliate);
 
   router.get('/auth', AuthApiHandlers.getApiKey);
 
