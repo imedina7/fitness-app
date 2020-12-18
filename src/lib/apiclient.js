@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default function apiclient() {
-  const BASE_URL = 'https://abm-fitness-master-g6qyyj6318x.herokuapp.com';
+  const BASE_URL = '';
   return {
     getLocations: async () => {
       const locationList = await axios.get(`${BASE_URL}/api/v1/locations`);
