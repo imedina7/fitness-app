@@ -18,28 +18,29 @@ const getLocations = (req, res) => {
     }
     if ( weather_flag ) {
 
-      const locations = locationList.map(location => {
+      Promise.all(locationList.map(async location => {
         const lat = location.geolocation.coordinates[0];
         const lon = location.geolocation.coordinates[1];
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.OWM_APIKEY}&units=metric`).then( response => {
-          const result = response.data;
+        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.OWM_APIKEY}&units=metric`);
+        const result = response.data;
 
-          const briefWeather = {
-            main: result.weather[0].main,
-            description: result.weather[0].description,
-            details: {...result.main, clouds: result.clouds, wind: result.wind }
-          }
+        const weather = {
+          main: result.weather[0].main,
+          description: result.weather[0].description,
+          details: {...result.main, clouds: result.clouds, wind: result.wind }
+        }
 
-          location.weather = briefWeather;
-        }).catch( err => console.error(`Failed to get weather for location '${location.title}'`, err) );
+        const newLocation = {...location._doc, weather};
+        return newLocation;
+      })).then( locationsPlusWeather => {
 
-        return location;
-      })
+        res.json(locationsPlusWeather);
+      }).catch( err => console.error(err));
 
-      return res.json(locations);
+    } else {
+      res.json(locationList);
     }
 
-    return res.json(locationList);
 
   }).catch( err => {
     console.error(err);

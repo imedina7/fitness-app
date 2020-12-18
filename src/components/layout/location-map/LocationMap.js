@@ -21,15 +21,16 @@ export default class LocationMap extends React.Component {
   };
   getMarkers = (locations) => {
     return locations.map( location => (
-      <div lat={location.geolocation.coordinates[0]} key={location._id} lng={location.geolocation.coordinates[1]}><LocationTooltip location={location}></LocationTooltip></div>
+      <LocationTooltip location={location} key={location._id} 
+      lat={ location.geolocation.coordinates[0] }
+      lng={ location.geolocation.coordinates[1] }></LocationTooltip>
       ));
   } 
   componentDidMount () {
   }
   render () {
     const { apikey, center, zoom } = this.props;
-    const { locations } = this.state;
-    console.log(locations);
+
     return (
       <MapContext.Consumer>
         { value => (

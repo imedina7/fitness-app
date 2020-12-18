@@ -11,6 +11,13 @@ export default function apiclient () {
 
       return locationObjectArray;
     },
+    getLocationsAndWeather: async () => {
+      const locationList = await axios.get(`${BASE_URL}/api/v1/locations?options=weather`);
+
+      const locationObjectArray = locationList.data;
+
+      return locationObjectArray;
+    },
     getLocationFromId: async (_id) => {
       const locationObjString = await axios.get(`${BASE_URL}/api/v1/location/${_id}`);
       const locationObj = JSON.parse(locationObjString);
@@ -36,7 +43,7 @@ export default function apiclient () {
       return response.data;
     },
     getGoogleApiKey: async () => {
-      const response = await axios.get(`${BASE_URL}/api/v1/auth?type=google`);
+      const response = await axios.get(`${BASE_URL}/api/v1/auth`);
       return response.data;
     }
   }

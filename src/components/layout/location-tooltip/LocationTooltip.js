@@ -13,12 +13,11 @@ export class LocationTooltip extends Component {
     render() {
         const { location } = this.state;
         return (
-            <div 
-            lat={ location.geolocation.coordinates[0] }
-            lng={ location.geolocation.coordinates[1] }>
+            <div>
                 <h3>{location.title}</h3>
                 <p>
-                    
+                    Weather: {location.weather.description}<br/>
+                    Min/Max: {location.weather.details.temp_min}°C/{location.weather.details.temp_max}°C
                 </p>
             </div>
         )

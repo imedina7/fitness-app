@@ -19,7 +19,7 @@ export default class MapPage extends React.Component {
       });
     }).catch(err => console.error('Failed to get google api key from api: ', err));
 
-    apiclient().getLocations().then(locations =>
+    apiclient().getLocationsAndWeather().then(locations =>
       this.setState(() => {
         return { locations } 
       })
