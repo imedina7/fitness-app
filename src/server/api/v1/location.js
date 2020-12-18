@@ -18,8 +18,8 @@ const getLocations = (req, res) => {
       if (weatherFlag) {
         Promise.all(
           locationList.map(async (location) => {
-            const lat = location.geolocation.coordinates[0];
-            const lon = location.geolocation.coordinates[1];
+            const lon = location.geolocation.coordinates[0];
+            const lat = location.geolocation.coordinates[1];
             const response = await axios.get(
               `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.OWM_APIKEY}&units=metric`,
             );
@@ -77,7 +77,7 @@ const updateLocation = (req, res) => {
 
 const putLocation = (req, res) => {
   const location = req.body;
-  console.log(req.body);
+
   const locationCoords = {
     type: 'Point',
     coordinates: [
