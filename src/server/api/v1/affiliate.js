@@ -1,19 +1,30 @@
+/* eslint-disable no-console */
 import AffiliateDocument from '../../db/model/affiliate.js';
 
+const AffiliateModel = AffiliateDocument.getModel();
+
 const getAffiliates = (req, res) => {
-  const AffiliateModel = AffiliateDocument.getModel();
   AffiliateModel.find()
     .then((affiliateList) => {
       res.json(affiliateList);
     })
     .catch((err) => {
-      // eslint-disable-next-line no-console
       console.error(err);
       res.sendStatus(500);
     });
 };
 const getSingleAffiliate = (req, res) => {
   res.sendStatus(200);
+};
+const deleteAffiliate = (req, res) => {
+  AffiliateModel.findByIdAndRemove(req.param.id)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
 };
 const putAffiliate = (req, res) => {
   const affiliate = req.body;
@@ -30,7 +41,6 @@ const putAffiliate = (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      // eslint-disable-next-line no-console
       console.error(err);
       res.sendStatus(500);
     });
@@ -39,6 +49,7 @@ const AffiliateApiHandlers = {
   getAffiliates,
   getSingleAffiliate,
   putAffiliate,
+  deleteAffiliate,
 };
 
 export default AffiliateApiHandlers;
