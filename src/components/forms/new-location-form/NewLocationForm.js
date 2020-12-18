@@ -46,6 +46,19 @@ class NewLocationForm extends Component {
 
   render() {
     const { errorMsg } = this.state;
+    const { itemToEdit } = this.props;
+    const {
+      title,
+      city,
+      country,
+      address,
+      geolocation,
+      openhours,
+      type,
+    } = itemToEdit;
+    const {
+      coordinates: [longitude, latitude],
+    } = geolocation || { coordinates: [0, 0] };
     return (
       <form
         onSubmit={this.validateAndSubmit}
@@ -61,19 +74,27 @@ class NewLocationForm extends Component {
           <input
             id="title"
             name="title"
+            defaultValue={title || ''}
             type="text"
             data-testid="title-field"
           />
         </div>
         <div className="formitem">
           <label htmlFor="city">City: </label>
-          <input id="city" name="city" type="text" data-testid="city-field" />
+          <input
+            id="city"
+            name="city"
+            type="text"
+            defaultValue={city || ''}
+            data-testid="city-field"
+          />
         </div>
         <div className="formitem">
           <label htmlFor="country">Country: </label>
           <input
             id="country"
             name="country"
+            defaultValue={country || ''}
             type="text"
             data-testid="country-field"
           />
@@ -83,6 +104,7 @@ class NewLocationForm extends Component {
           <input
             id="address"
             name="address"
+            defaultValue={address || ''}
             type="text"
             data-testid="address-field"
           />
@@ -93,6 +115,7 @@ class NewLocationForm extends Component {
             id="latitude"
             name="latitude"
             type="number"
+            defaultValue={latitude || ''}
             step="any"
             data-testid="latitude-field"
           />
@@ -103,6 +126,7 @@ class NewLocationForm extends Component {
             id="longitude"
             name="longitude"
             type="number"
+            defaultValue={longitude || ''}
             step="any"
             data-testid="longitude-field"
           />
@@ -112,13 +136,14 @@ class NewLocationForm extends Component {
           <input
             id="openhours"
             name="openhours"
+            defaultValue={openhours || ''}
             type="text"
             data-testid="openhours-field"
           />
         </div>
         <h3>Type: </h3>
         <div className="formitem type-selector">
-          <select name="type">
+          <select name="type" defaultValue={type || ''}>
             <option>Select an option</option>
             <option value="indoors">Only indoors</option>
             <option value="outdoors">Outdoors</option>

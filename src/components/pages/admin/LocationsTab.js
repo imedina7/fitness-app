@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react/jsx-no-bind */
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, useHistory } from 'react-router-dom';
 
 import Modal from '../../layout/modal/Modal';
@@ -13,7 +13,7 @@ import { adminEvents } from '../../../lib/eventHandlers';
 
 export default function LocationsTab() {
   const history = useHistory();
-
+  const [itemToEdit, setItemToEdit] = useState({});
   return (
     <div className="app-tab">
       <h2>Manage Locations:</h2>
@@ -40,7 +40,17 @@ export default function LocationsTab() {
                     <td>{location.address}</td>
                     <td>{location.type}</td>
                     <td>
-                      <button type="button">Edit</button>|
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setItemToEdit(location);
+                          history.push('/admin/edit/location');
+                        }}
+                      >
+                        Edit
+                      </button>
+                      |
                       <button
                         type="button"
                         onClick={(e) => {
@@ -61,6 +71,7 @@ export default function LocationsTab() {
             <Route path="/admin/new/location">
               <Modal title="New location" onClose={history.goBack}>
                 <NewLocationForm
+                  itemToEdit={{}}
                   onSubmit={async (location) => {
                     await adminEvents.submitNewLocation(location);
                     history.goBack();
@@ -70,7 +81,7 @@ export default function LocationsTab() {
             </Route>
             <Route path="/admin/edit/location">
               <Modal title="Edit location" onClose={history.goBack}>
-                <NewLocationForm />
+                <NewLocationForm itemToEdit={itemToEdit} />
               </Modal>
             </Route>
           </>
