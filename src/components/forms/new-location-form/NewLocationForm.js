@@ -48,6 +48,7 @@ class NewLocationForm extends Component {
     const { errorMsg } = this.state;
     const { itemToEdit } = this.props;
     const {
+      _id,
       title,
       city,
       country,
@@ -69,6 +70,7 @@ class NewLocationForm extends Component {
         <div className="formitem">
           <p className="error-msg">{errorMsg}</p>
         </div>
+        {_id ? <input type="hidden" name="_id" value={_id} /> : []}
         <div className="formitem">
           <label htmlFor="title">Title: </label>
           <input
