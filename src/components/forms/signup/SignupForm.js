@@ -6,8 +6,19 @@ class SignupForm extends Component {
   constructor(props) {
     super(props);
     const { itemToEdit } = this.props;
-
-    this.state = itemToEdit ? { ...itemToEdit } : {};
+    if (itemToEdit) {
+      const { _id, firstName, lastName, address, email, plan } = itemToEdit;
+      this.state = itemToEdit
+        ? {
+            _id,
+            firstname: firstName,
+            lastname: lastName,
+            address,
+            email,
+            plantype: plan,
+          }
+        : {};
+    }
     this.plans = {
       basic: 'This is a basic plan',
       premium: 'This is the premium plan',
@@ -59,7 +70,7 @@ class SignupForm extends Component {
     const { errorMsg } = this.state;
     const { itemToEdit, submitLabel } = this.props;
 
-    const { firstName, lastName, address, email } = itemToEdit;
+    const { _id, firstName, lastName, address, email, plan } = itemToEdit;
 
     return (
       <form
@@ -68,6 +79,7 @@ class SignupForm extends Component {
         onChange={this.updateForm}
         data-testid="signup-form"
       >
+        {_id ? <input type="hidden" name="_id" value={_id} /> : []}
         <div className="formitem">
           <p className="error-msg">{errorMsg}</p>
         </div>
@@ -114,25 +126,48 @@ class SignupForm extends Component {
         <h3>Plan: </h3>
         <div className="formitem plan-selector">
           <label htmlFor="basic-plan" className="basic-plan">
-            <input
-              name="plantype"
-              id="basic-plan"
-              type="radio"
-              value="basic"
-              data-testid="basicplan-option"
-            />
+            {plan && plan === 'basic' ? (
+              <input
+                name="plantype"
+                id="basic-plan"
+                type="radio"
+                value="basic"
+                data-testid="basicplan-option"
+                defaultChecked
+              />
+            ) : (
+              <input
+                name="plantype"
+                id="basic-plan"
+                type="radio"
+                value="basic"
+                data-testid="basicplan-option"
+                defaultChecked
+              />
+            )}
             <div>
               <span>Basic</span>
             </div>
           </label>
           <label htmlFor="premium-plan" className="premium-plan">
-            <input
-              name="plantype"
-              id="premium-plan"
-              type="radio"
-              value="premium"
-              data-testid="premiumplan-option"
-            />
+            {plan && plan === 'premium' ? (
+              <input
+                name="plantype"
+                id="premium-plan"
+                type="radio"
+                value="premium"
+                data-testid="premiumplan-option"
+                defaultChecked
+              />
+            ) : (
+              <input
+                name="plantype"
+                id="premium-plan"
+                type="radio"
+                value="premium"
+                data-testid="premiumplan-option"
+              />
+            )}
             <div>
               <span>Premium</span>
             </div>
